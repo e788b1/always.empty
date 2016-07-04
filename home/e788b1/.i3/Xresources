@@ -1,0 +1,32 @@
+! Xresources
+Xcursor.size: 16
+URxvt*font:   xft:Terminus-10, xft:WenQuanYi Bitmap Song-10
+Rxvt.preeditType:Root
+URxvt.termName    : rxvt-256color
+URxvt.iso14755    : false
+URxvt.urgentOnBell: true
+URxvt.saveLines   : 12000
+URxvt.scrollBar   : false
+URxvt.scrollstyle : rxvt
+URxvt.print-pipe: cat > /tmp/URxvt.print-pipe
+URxvt.perl-ext-common:default,clipboard,font-size,matcher,keyboard-select,url-select
+URxvt.keysym.M-x           : perl:keyboard-select:activate
+URxvt.keysym.M-c           : perl:clipboard:copy
+URxvt.keysym.M-v           : perl:clipboard:paste
+URxvt.keysym.M-C-v         : perl:clipboard:paste_escaped
+URxvt.keysym.C-equal       : perl:font-size:increase
+URxvt.keysym.C-minus       : perl:font-size:decrease
+URxvt.keysym.M-u           : perl:url-select:select_next
+URxvt.url-select.launcher  : xdg-open
+URxvt.url-select.autocopy  : true
+URxvt.url-select.underline : true
+URxvt.matcher.button       : 1
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
+URxvt.colorIT:           #b58900
+URxvt.colorBD:           #d33682
+URxvt.colorUL:           #268bd2
+! #include "Xresources.gentoo"
+#include "Xresources.solarized"
+URxvt.intensityStyles:   false

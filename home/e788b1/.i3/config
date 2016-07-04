@@ -1,0 +1,178 @@
+#=============================================================== Style
+#6c71c4 #d33682 #484e50 #586e75 #b492b6 #cb4b16
+font xft:Cronos Pro bold 10
+# class                 border  backgr. text    indicator
+client.focused          #cb4b16 #cb4b16 #ffffff #484e50
+client.focused_inactive #2aa198 #2aa198 #eeeeee #586e75
+client.unfocused        #333333 #073642 #aaaaaa #292d2e
+client.urgent           #2f343a #900000 #ffffff #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000
+client.background       #ffffff
+bar {
+        position top
+        # mode     hide
+        # strip_workspace_numbers yes
+        tray_output primary
+        # tray_output LVDS
+        status_command py3status -c ~/.i3/py3status.conf
+        # status_command    i3status -c ~/.i3/i3status.conf
+        colors {
+                background #073642
+                statusline #cccccc
+                separator  #666666
+
+                focused_workspace  #cb4b16 #cb4b16 #ffffff
+                active_workspace   #2aa198 #2aa198 #eeeeee
+                inactive_workspace #586e75 #484e50 #cccccc
+                urgent_workspace   #2f343a #900000 #ffffff
+                binding_mode       #2f343a #900000 #ffffff
+        }
+}
+#===============================================================
+set $mod Mod4
+set $nsi --no-startup-id
+# ==============================================================
+exec $nsi i3action autostart
+# ==============================================================
+floating_modifier $mod
+popup_during_fullscreen smart
+new_window pixel 2
+# focus_follows_mouse  no
+# force_focus_wrapping yes
+bindsym button3 kill
+bindsym --whole-window $mod+Shift+button3 kill
+bindsym $mod+Return       exec $nsi urxvtc
+# bindsym $mod+Shift+Return exec $nsi lilyterm
+bindsym $mod+Shift+Return exec $nsi urxvtc_scratchpad
+bindsym $mod+comma        exec $nsi xrandr-invert-colors.bin -s 1
+bindsym $mod+period       exec $nsi xrandr-invert-colors.bin -s 0
+bindsym $mod+Shift+comma  exec $nsi xrandr-invert-colors.bin
+bindsym $mod+Shift+period exec $nsi i3action redshift
+bindsym $mod+slash        exec $nsi pcmanfm
+bindsym $mod+Shift+d exec $nsi DESKTOP_SESSION=kde dolphin
+bindsym --release Print exec $nsi i3action print focused
+bindsym --release Ctrl+Print exec $nsi i3action print select
+bindsym Ctrl+Shift+Escape exec $nsi ksysguard
+bindsym $mod+Home exec $nsi i3action setwall
+bindsym $mod+Delete exec $nsi i3action rmcurrentwall
+bindsym $mod+Escape exec $nsi urxvtc -e htop
+bindsym $mod+grave  exec $nsi i3action winmenu
+bindsym $mod+BackSpace exec $nsi i3action locki3
+bindsym $mod+Shift+BackSpace exit
+bindsym $mod+F2 border toggle
+bindsym $mod+F4  kill
+bindsym $mod+F6  exec i3action toggletouch
+bindsym $mod+F9 exec $nsi urxvtc -e ncmpcpp
+bindsym $mod+Shift+F10 exec $nsi i3action rmcurrentmusic
+bindsym $mod+F11 bar mode toggle
+bindsym $mod+F5 reload, exec $nsi notify-send "reload"
+bindsym $mod+Shift+F5 restart
+
+bindsym $mod+1 exec $nsi i3action runapp
+bindsym $mod+2 exec $nsi i3action search
+bindsym $mod+semicolon exec $nsi i3action search
+bindsym $mod+3 exec $nsi i3action youdao
+bindsym $mod+4 exec $nsi i3action mpc
+bindsym $mod+5 exec $nsi i3action locate
+bindsym $mod+6 exec $nsi urxvtc -e i3action midi play
+bindsym $mod+Shift+6 exec $nsi i3action midi rmcurrent
+bindsym $mod+7 exec $nsi lilyterm -e "musicbox"
+bindsym $mod+8 exec $nsi i3action showtitle
+bindsym $mod+9 exec $nsi notify-send "`mpc current`"
+bindsym $mod+0 exec $nsi i3action run
+
+bindsym $mod+q workspace 1: q
+bindsym $mod+w workspace 2: w
+bindsym $mod+e workspace 3: e
+bindsym $mod+r workspace 4: r
+bindsym $mod+t workspace 5: t
+bindsym $mod+y workspace 6: y
+bindsym $mod+u workspace 7: u
+bindsym $mod+i workspace 8: i
+bindsym $mod+o workspace 9: o
+
+bindsym $mod+Shift+q move container to workspace 1: q
+bindsym $mod+Shift+w move container to workspace 2: w
+bindsym $mod+Shift+e move container to workspace 3: e
+bindsym $mod+Shift+r move container to workspace 4: r
+bindsym $mod+Shift+t move container to workspace 5: t
+bindsym $mod+Shift+y move container to workspace 6: y
+bindsym $mod+Shift+u move container to workspace 7: u
+bindsym $mod+Shift+i move container to workspace 8: i
+bindsym $mod+Shift+o move container to workspace 9: o
+
+bindsym $mod+p focus parent
+
+bindsym $mod+a exec $nsi pavucontrol
+mode "resize" {
+        bindsym h resize shrink width  10 px or 10 ppt
+        bindsym j resize grow   height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow   width  10 px or 10 ppt
+        bindsym q      mode "default"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+s mode "resize"
+# bindsym $mod+d exec $nsi dolphin
+bindsym $mod+d exec $nsi urxvtc -e ranger
+bindsym $mod+f fullscreen
+bindsym $mod+g exec $nsi google-chrome
+
+bindsym $mod+space       focus mode_toggle
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+z exec $nsi urxvtc -e i3get
+bindsym $mod+x exec $nsi notify-send "`pkill -en mpv`"
+bindsym $mod+Shift+x kill
+
+bindsym $mod+v split v
+bindsym $mod+b layout stacking
+bindsym $mod+n layout tabbed
+bindsym $mod+m layout toggle split
+
+bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Shift+Tab move container to workspace back_and_forth
+
+bindsym $mod+Shift+Left move workspace to output left
+bindsym $mod+Shift+Right move workspace to output right
+bindsym $mod+Shift+Up move workspace to output Up
+bindsym $mod+Shift+Down move workspace to output Down
+bindsym $mod+Left  workspace prev
+bindsym $mod+Right workspace next
+
+# bindsym $mod+Shift+minus move scratchpad
+# bindsym $mod+minus scratchpad show
+# bindsym $mod+equal scratchpad show, scratchpad show
+bindsym $mod+Shift+F12 move scratchpad
+bindsym $mod+F12 scratchpad show, scratchpad show
+bindsym F12 scratchpad show
+#=============================================================== FOR_WINDOW
+set $flyme floating enable,border normal
+for_window [class="^Lxappearance$"] $flyme
+for_window [class="^Speedcrunch$"] $flyme
+for_window [class="^feh$"] $flyme
+for_window [class="exe$"] $flyme
+for_window [class="^mpv$"] $flyme
+for_window [class="^Zathura$"] $flyme
+for_window [class="^Image Lounge$"] $flyme
+for_window [class="^Pavucontrol$"] $flyme
+for_window [class="^fontforge$"] $flyme
+# for_window [class="^dolphin$" title="(Copying.*)|(Moving.*)|(Progress Dialog)|(Creating directory)"] $flyme
+for_window [urgent=latest] focus
+for_window [window_role="bubble"] floating enable
+for_window [window_role="pop-up|task_dialog"] floating enable
+
+set $scratchpad move scratchpad, scratchpad show, border normal
+for_window [instance="scratchpad$"] $scratchpad
+#

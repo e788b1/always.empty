@@ -1,0 +1,12 @@
+#!/usr/bin/env python
+
+import os
+import sys
+
+git_repos = os.environ["GIT_REPOS"]
+sys.path.append(git_repos + '/youtube-dl')
+
+import youtube_dl
+
+if __name__ == '__main__':
+    youtube_dl.main()

@@ -1,0 +1,4 @@
+# resolv.conf.head
+nameserver 127.0.0.1
+# nameserver 233.6.6.6
+# nameserver 8.8.8.8

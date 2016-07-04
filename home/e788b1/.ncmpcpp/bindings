@@ -1,0 +1,14 @@
+def_key "k"
+  scroll_up
+def_key "j"
+  scroll_down
+def_key "ctrl_u"
+  page_up
+def_key "ctrl_d"
+  page_down
+def_key "d"
+  delete_playlist_items
+def_key "ctrl_l"
+  next_column
+def_key "ctrl_h"
+  previous_column

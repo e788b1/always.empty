@@ -1,0 +1,361 @@
+ Ray's Notebook § Computing
+Audio & Video
+Banshee DAAP, DPAP, & DMAP Dmapd Music and Photo Server FFmpeg GNOME Videos (Totem) GStreamer MT-DAAPD Music Server Music Player Daemon (MPD) MPV Playlists Parole Media Player Pulse Audio Rhythmbox Tag Editing
+Wikipedia's list of Linux audio players Audio Format Roundup Video Format Guide Video Resolution Comparison
+Banshee
+
+Home
+ Banshee stores settings under ~/.config/banshee-1.
+ Banshee automatically consults Avahi for shared music libraries advertised under iTunes Audio Access and displays what it finds under section Shared Music. Banshee does not share out its own music.
+DAAP, DPAP, & DMAP
+
+Wikipedia
+Apple's iTunes uses the Digital Audio Access Protocol, or DAAP, for sharing music over a LAN as either a server or client. Although proprietary, DAAP has been largely reverse engineered. Consequently, open-source servers and clients emulating iTunes sharing now exist. Rhythmbox, for example, can act as both. Fedora also offers client Banshee and servers Dmapd and MT-DAAPD. From version 7, however, iTunes accepts connections only from iTunes clients. The authentication enforcing this restriction seems unlikely to be reverse engineered because it uses public-key encryption. The upshot of all this is that a GNU/Linux box can share its music collection with any DAAP client on the LAN. But Banshee and Rhythmbox cannot access the music of a recent iTunes server.
+Apple's iPhoto uses the companion Digital Photo Access Protocol, or DPAP. Both DAAP and DPAP tap the underlying Digital Media Access Protocol, or DMAP, which itself draws on HTTP.
+A host offering music or photos to the LAN must open its firewall to DAAP connections on port 3689/tcp or DPAP connections on port 8770/tcp. The Avahi Zeroconf service advertises DAAP servers under iTunes Audio Access (_daap._tcp) and DPAP servers under Digital Photo Sharing (_dpap._tcp).
+Other clients: Exaile, PythonDaap. Other servers (not available from Fedora package repositories): Tangerine, spydaap. There are Perl modules as well.
+Dmapd Music and Photo Server
+
+Home
+Dmapd provides local media-sharing services mimicking those of Apple's iTunes and iPhoto. It shares music via DAAP and photos via DPAP over a LAN, and it advertises these services using the Avahi Zeroconf service. Although the current version 0.0.48 misses the A-team cut, it seems to share music files (at least) just fine across a (or my) home LAN. (Music files, at least: I lack iPhoto or an equivalent client to test photo sharing; see also below.)
+The executable, /usr/sbin/dmapd, runs as a daemon and as such offers no user interface once called. It is suitable for a headless or embedded system. Clients access its media via the DMAP protocols.
+Basic Configuration and Usage
+
+Here's a basic but complete setup serving the existing music and photo collection for user ray on host Desktop. Music files are already in ~/audio/music, and picture files are in ~/scratch/photo. This setup has dmapd put its working files in ~/scratch/spool/dmapd, under which dmapd expects sub-directories DAAP and DPAP. Create this directory tree:
+-> mkdir -p ~/scratch/spool/dmapd{,/DAAP,/DPAP}
+The configuration file /etc/dmapd.conf documents and assigns a small list of run-time parameters using the INI style. Make the following adjustments:
+[General]
+Database-Dir=/home/ray/scratch/spool/dmapd
+Share-Name=Desktop Music and Photos (DMAPD)
+User=ray
+Group=ray
+[Music]
+Dirs=/home/ray/audio/music
+[Picture]
+Dirs=/home/ray/scratch/photo
+To start the dmapd service:
+-> dmapd --lockpath ~/scratch/spool/dmapd/lock --pidpath ~/scratch/spool/dmapd/pid
+(There are several warnings issued from GLib; the server carries on gamely just the same.) To kill the server:
+-> kill `cat ~/scratch/spool/dmapd/pid`
+There is no means to specify a configuration file other than /etc/dmpad.conf. But the man page lists command-line options overriding the settings of the configuration file as well as some additional options and environment variables. Invoking dmpad with option --help reveals still more options, absent from the man page.
+To inhibit photo sharing, comment-out the Dirs setting in the Pictures section. Inhibit music sharing similarly under the Music section.
+dmapd scans the music and picture folders and caches its findings in a bunch of .record files. Here, the music cache is ~/scratch/spool/dmpad/DAAP and the photo cache is ~/scratch/spool/dmpad/DPAP. The caches' common parent directory can be changed from the default (/var/cache/dmapd), as done above, but apparently the sub-directories DAAP and DPAP are fixed. If a cache directory does not exist, however, dmapd simply skips caching.
+Photo Sharing
+
+Photo sharing is not working properly (for me). It looks like a library has gone missing:
+-> systemctl status dmapd.service
+... /usr/lib/dmapd/0.0.47/modules/libphoto-meta-reader-vips.so: cannot open shared object file: No such file or directory
+... ** (process:8881): WARNING **: Error opening /usr/lib/dmapd/0.0.47/modules/libphoto-meta-reader-vips.so
+... (dmapd:8881): GLib-GObject-CRITICAL **: g_object_set: assertion `G_IS_OBJECT (object)' failed
+... ** (dmapd:8881): ERROR **: Could not load any photograph metadata reader plugin but photograph directory provided
+-> ls  -1 /usr/lib/dmapd/0.0.47/modules
+libav-meta-reader-gst.so
+libav-render-gst.so
+libdb-builder-gdir.so
+libdmapd-dmap-db-disk.so
+libphoto-meta-reader-graphicsmagick.so
+The following did not help:
+DMAPD_PHOTO_META_READER_MODULE=/usr/lib/dmapd/0.0.47/modules/libphoto-meta-reader-graphicsmagick.so
+But this little hack works:
+-> cd /usr/lib/dmapd/0.0.47/modules/
+-> ln -s libphoto-meta-reader-graphicsmagick.so libphoto-meta-reader-vips.so 
+FFmpeg
+
+The FFmpeg project provides a comprehensive suite of tools for manipulating audio-video data of all sorts. Applications tap FFmpeg's facilities through a handful of libraries, such as libavformat for packing and unpacking media-container files, libavcodec for encoding and decoding media-data streams, and libavfilter for filtering un-encoded streams. End users can access these libraries directly though provided commands, most saliently ffmpeg.
+Supported File Formats, Codecs or Features FFmpeg Wiki Wikipedia Arch examples Using ffmpeg to manipulate audio and video files Metadata tags
+ Use ffprobe to retrieve information about a media file's content:
+-> ffprobe clip-canon.avi 
+...
+Input #0, avi, from 'clip-canon.avi':
+  Metadata:
+    creation_time   : 2014-04-19 18:04:02
+    encoder         : CanonMVI06
+  Duration: 00:00:06.53, start: 0.000000, bitrate: 14666 kb/s
+    Stream #0:0: Video: mjpeg (MJPG / 0x47504A4D), yuvj422p(pc), 640x480, 30 tbr, 30 tbn, 30 tbc
+    Stream #0:1: Audio: pcm_u8 ([1][0][0][0] / 0x0001), 11024 Hz, 1 channels, u8, 88 kb/s
+See section Main Options of the man page for tuning output with options like -show_format and -show_streams; for example:
+-> ffprobe -loglevel quiet -show_format clip-canon.avi 
+[FORMAT]
+filename=clip-canon.avi
+nb_streams=2
+nb_programs=0
+format_name=avi
+format_long_name=AVI (Audio Video Interleaved)
+start_time=0.000000
+duration=6.533268
+size=11977356
+bit_rate=14666296
+probe_score=100
+TAG:creation_time=2014-04-19 18:04:02
+TAG:encoder=CanonMVI06
+[/FORMAT]
+ You can use ffplay to play a music or other audio file. For example:
+-> ffplay -autoexit 'Arlo Guthrie - The City Of New Orleans.mp3'
+...
+Input #0, mp3, from 'Arlo Guthrie - The City Of New Orleans.mp3':
+  Metadata:
+    title           : The City Of New Orleans (Original Version)
+    ...
+  Duration: 00:04:34.55, start: 0.000000, bitrate: 244 kb/s
+    Stream #0:0: Audio: mp3, 44100 Hz, stereo, s16p, 238 kb/s
+    Stream #0:1: Video: mjpeg, yuvj420p(pc), 600x600 [SAR 1:1 DAR 1:1], 90k tbr, 90k tbn, 90k tbc
+    ...
+During playback, ffmpeg displays the album-cover image (or other video) embedded in the container file. Use options -x and -y to set the size of the display. Use option -showmode to show waves or Fourier transforms of the audio instead of an embedded image or in the absence of an image. Or just specify -nodisp to prevent video display altogether. For testing and tinkering, consider option -ss to seek into midstream and option -t to limit playback (both by seconds). Additionally, section While Playing of the man page lists keyboard commands for interactive control, like p to pause/continue, left/right to seek, and q to quit.
+ You can use ffplay to play video as well:
+->  ffmpeg -i clip-canon.avi -vcodec rawvideo -pix_fmt yuv420p -f sdl "SDL output"
+ Use ffmpeg to manipulate media files of all sorts. ffmpeg provides several options for reporting its capabilities. To see the supported decoders, for example:
+-> ffmpeg -loglevel quiet -decoders
+Decoders:
+ V..... = Video
+ A..... = Audio
+ S..... = Subtitle
+ .F.... = Frame-level multithreading
+ ..S... = Slice-level multithreading
+ ...X.. = Codec is experimental
+ ....B. = Supports draw_horiz_band
+ .....D = Supports direct rendering method 1
+ ------
+ V....D 012v                 Uncompressed 4:2:2 10-bit
+ V....D 4xm                  4X Movie
+ V....D 8bps                 QuickTime 8BPS video
+ V....D aasc                 Autodesk RLE
+ V....D aic                  Apple Intermediate Codec
+ ...
+Similarly, option -decoders reports decoders, and option -formats reports container-file formats. For the complete list, see section "Generic Options" of ffmpeg's man page.
+ To find the number of frames in a video, use null output and read the frame count from the end of the log:
+-> ffmpeg -i clip-canon.avi -vcodec copy -an -f null /dev/null
+...
+frame=  563 fps=0.0 q=0.0 Lsize=N/A time=00:00:18.76 bitrate=N/A    
+video:53kB audio:0kB subtitle:0 global headers:0kB muxing overhead -100.040705%
+It's not necessary to specify the video codec as copy or to suppress audio (-an), but these settings get a snappier response.
+Alternatively, you can have grep grab that penultimate line:
+-> ffmpeg -i clip-canon.avi -vcodec copy -an -f null /dev/null 2>&1 | grep  'frame='
+frame=  563 fps=0.0 q=0.0 Lsize=N/A time=00:00:18.76 bitrate=N/A    
+Because ffmpeg writes the frame count to stderr, this pipeline redirects stderr into stdout to feed grep.
+Or just cut to the chase:
+-> ffmpeg -i clip-canon.avi -vcodec copy -an -f null /dev/null  2>&1 | grep  'frame=' | cut --delimiter ' ' --fields 3
+563
+(You can abbreviate those final options to -d' ' and -f3 to reduce typing.)
+ Fetch frame count with ffmpeg (stackoverflow)
+ To extract the 563 frames of video clip-canon.avi into separate image files f001.png, ..., f563.png,
+-> mkdir clip-frames
+-> cd clip-frames
+-> ffmpeg -i ../clip-canon.avi f%03d.png
+Here, option -r sets the frame rate in Hz, and option -s sets the image size.
+To concatenate video files from the same device:
+ How to concatenate (join, merge) media files from FFmpeg wiki
+ To extract only the audio stream and save it as-is in a separate file, for example:
+-> ffmpeg -i clip-iphone.mov -vn -codec copy new.aac
+Option -vn tells ffmpeg to leave the video stream behind, and option -codec copy keeps ffmpeg from needlessly decoding and re-encoding the stream. Alternatively, you can specify a different codec for the audio stream:
+-> ffmpeg -i clip-iphone.mov -vn -codec wmav2 new.wav
+-> ffmpeg -i clip-iphone.mov -vn -acodec alac new.m4a
+> ffmpeg -i clip-iphone.mov -an -vcodec wmv2 new.wmv
+Similarly, to extract only the video stream as-is:
+-> ffmpeg -i clip-iphone.mov -an -codec copy new.mov
+Here it's option -an that tells ffmpegy to ignore audio.
+GNOME Videos (Totem)
+
+Home Wikipedia
+GNOME Videos is the GNOME project's media-playback application, formerly called Totem. It uses GStreamer for A/V processing. It no longer offers the option to use Xine A/V libraries as it once did because GStreamer now provides the complementary functionality that it had lacked.
+ Here are the GStreamer plugins I've explicitly installed to expand Videos' playback repertoire: gstreamer1-plugins-ugly for MP3; gstreamer1-libav for AAC and H.264. (Note that "1" in "gstreamer1" for these package names.)
+GStreamer
+
+Home Wikipedia
+GStreamer is an API in C for processing audio-video data by concatenating a series of computational elements into an overall pipeline. A prototypical pipeline consists of an initial element, any number of middle elements, and a final element. The initial element accepts data from a system device external to the pipeline, such as a audio file or recorder. Each middle element receives data from the preceeding internal element, transforms the data, and provides its results to the next element. For example, a middle element might decode an incoming MP3 stream into outgoing raw audio data. The final element transfers results to an external system device, such as a sound card. GStreamer's framework includes a suite of built-in elements for core tasks as well as tools for making custom plug-in elements. Its flexible model and implementation together extend to pipelines for processing generic data streams.
+Although intended primarily as a back-end for multimedia applications (like these), it also includes some command-line utilities for constructing pipelines in a shell. For example, here's a pipeline to play a sound file:
+-> gst-launch filesrc location=/usr/share/sounds/purple/login.wav ! decodebin ! alsasink
+Alternatively:
+-> gst-launch playbin uri=file:///usr/share/sounds/purple/login.wav
+To get information on the pipeline elements:
+-> gst-inspect filesrc  | grep -m1 Description
+Description:  Read from arbitrary point in a file
+-> gst-inspect decodebin | grep -m1 Description
+Description:  Autoplug and decode to raw media
+-> gst-inspect alsasink| grep -m1 Description
+Description:  Output to a sound card via ALSA
+MPV
+
+MPV is an audio-video player capable of handling many formats for media containers and many codecs for media streams. It can access media from disk files, disc players, Internet streams, radio hardware, TV hardware, and a few other sources. Playback windows are initiated by shell commands but respond to interactive keyboard and mouse controls.
+MPV is a fork of mplayer2, which itself was a fork of mplayer but is now apparently defunct. The latter is also available under Fedora.
+System-wide settings go in configuration file /etc/mpv/mpv.conf, and a user's static settings go in ~/.mpv/config. A user's configuration file overrules any conflicting configurations in /etc/mpv/mpv.conf. Command-line options take precedence over configuration files.
+Say something about profiles.
+-> mpv --profile=help
+ The default audio driver is pulse. To see the list of available audio drivers:
+-> mpv --ao help
+Available audio outputs:
+  pulse          : PulseAudio audio output
+  alsa           : ALSA-0.9.x-1.x audio output
+  oss            : OSS/ioctl audio output
+  null           : Null audio output
+  pcm            : RAW PCM/WAVE file writer audio output
+The default video driver is opengl. To see the list of available video drivers:
+-> mpv --vo help
+Available video outputs:
+  opengl         : Extended OpenGL Renderer
+  ...
+  null           : Null video output
+  image          : Write video frames to image files
+  ...
+You can similarly list the available input- and output-container formats with --of=help; the available audio decoders with --ad=help and encoders with --oac=help; and the available video decoders with --vd=help and encoders with --oac=help
+ To view A/V file using default outputs:
+-> mpv clip-canon.avi
+You can suppress audio with option -no-audio, or you can suppress video with -no-video. Section Interactive Control of the man page lists keyboard commands, like p to pause/continue, left/right to seek, and q to quit.
+If you need to rotate the video window:
+-> mpv --vf rotate=1 clip-iphone.mov
+This command tells mpv to filter the video stream (-vf) using the rotate filter at 90° clockwise (rotate=1). For other rotations, see section Video Filters of the man page.
+ You can view a sequence of A/V files in succession simply by listing them:
+-> mpv clip-canon.avi clip-iphone.mov
+With respect to the terminal log and its progress meter, this command is more-or-less equivalent to issuing mpv separately on each file. To have mpv view the multiple input files as a concatenated whole, add option --merge-files. For example:
+-> mpv --merge-files -vf rotate=1 clip-{1,2,3}.mov
+ These three clips need to be rotated clockwise by 90°:
+To rotate just the second output, you need to work a little harder:
+mpv --merge-files clip-canon.avi --{ --vf rotate=1 clip-iphone.mov --}
+Normally, all options apply to all files, but delimiters "--{" and "--}" allow you to restrict the scope of options to a subset of files.
+ Here's how to concatenate this sequence into a single file, final.mov:
+-> mpv --merge-files -vf rotate=1 clip-{1,2,3}.mov -o final.mov
+This presumably decodes the three streams and then encodes the merged streams even though the input and output codecs are the same—but I am not sure. If correct, the merged file may suffer reduced quality; consider ffmpeg instead.
+You can easily specify the container format of the output file in the that file's extension. For example, here's how to merge the above three mov files into a webm file, which omits the audio streams as well:
+-> mpv --merge-files --no-audio -vf rotate=1 clip-{1,2,3}.mov -o final.webm
+-> file final.webm 
+final.webm: WebM
+ To extract frames into separate image files:
+-> mpv -vo jpg
+ To take screen shots of a playing video, press s. By default, mpv writes PNG files with template shotNNN.png in the working directory. It adjusts the sequence numbering to avoid overwriting files. See section Taking Screenshots of the man page for details.
+You can select the image format and filename template with several options, listed in the man page. For example:
+-> mkdir shots; cd shots
+-> mpv --screenshot-format ppm --screenshot-template "%F-%P" ../clip.avi 
+...
+-> ls 
+clip-00:00:01.333.ppm  clip-00:00:02.633.ppm  clip-00:00:04.533.ppm
+(Although listed as supported, option --screenshot-format=jpg writes PNG images on my system—mpv version 0.3.11 under Fedora 20.)
+ To list available audio or video filters, use option --af=help or --vf=help respectively.
+MT-DAAPD Music Server
+
+Wikipedia
+MT-DAAPD provides local music sharing mimicking Apple's iTunes. It shares music over a LAN via DAAP, and it advertises this service using the Avahi Zeroconf service. Although development has ceased early (at version 0.2.4.2), it seems to share music files just fine across a (or my) home LAN.
+The executable, /usr/sbin/mt-daapd, runs as a daemon and as such offers no direct user interface once called, but it does offer a web interface for run-time administration and inspection. It is thus suitable for a headless or embedded system. Clients on the LAN access its music via the DAAP protocol.
+Basic Configuration and Usage
+
+Here's a basic yet complete setup serving the existing music collection ~/audio/music of user ray on host Desktop. This setup has mt-daapd put its working files in ~/scratch/spool/mt-daapd; create this directory:
+-> mkdir ~/scratch/spool/mt-daapd
+Next, create the configuration file, say ~/audio/cfg/mt-daapd.conf; it can go anywhere.
+-> su -c '(cp /etc/mt-daapd.conf /home/ray/audio/cfg; chown ray:ray /home/ray/audio/cfg/mt-daapd.conf)'
+Make the following adjustments to ~/audio/cfg/mt-daapd.conf:
+servername Desktop Music Library (MT-DAAPD)
+mp3_dir    /home/ray/audio/music
+db_dir	   /home/ray/scratch/spool/mt-daapd
+logfile    /home/ray/scratch/spool/mt-daapd/log
+runas      ray
+To start the mt-daapd service:
+-> mt-daapd -y -c ~/audio/cfg/mt-daapd.conf &
+To stop the server, use something like this:
+-> kill `ps -C mt-daapd --format pid --no-headers`
+The configuration file documents the available parameters. There is no man page. Invoking mt-daapd with option --help list the handful of command-line options. Above, option -y says run as non-root, and option -c locates the configuration file.
+By default, mt-daapd advertises its presence over Avahi under both iTunes Audio Access for sharing music and Web Site for run-time administration. Use option -m to prevent this.
+Access the web interface through port 3689 (by default). On host desktop, for example, enter http://desktop:3689 in the browser. Leave the username blank, and enter the password given in the configuration file (by admin_pw).
+To activate support for M3U playlists, set process_m3u in the configuration file. In list files, specify paths relative to the music directory. Put the files in the music directory. (Note: Putting playlists in the music tree will cause Dmapd to gripe, because it thinks they are songs.)
+Music Player Daemon (MPD)
+
+Home User's Manual ArchLinux Wiki Wikipedia
+The Music Player Daemon (MPD) runs as a server process playing music on its host's sound card or streaming music on its host's network card. The server lacks a user interface. Instead, separate client applications speaking the MPD protocol connect to and control the server. Whether running locally or remotely, an MPD client can populate the play queue and select the output(s) for the server. This client-server architecture keeps the server's footprint small and allows the server to run on a headless or embedded host. Additionally, the architecture admits a wide range of clients addressing different operating systems, niches, and tastes. Multiple clients can simultaneously control the server, if desired.
+The executable is /usr/bin/mpd. It's capable of running properly as an ordinary-user process; the documentation discourages running as root. The server listens to port 6600 by default.
+There are many clients, both GUI and CLI. The MPD Wiki and the ArchLinux Wiki provide annotated lists.
+Basic Configuration and Usage
+
+Here's a basic but complete setup serving the existing music collection for user ray on host Desktop. Music files are already in ~/audio/music, and playlists are in ~/audio/playlists. This setup has mpd put its working files under ~/scratch/spool/mpd, so create this directory:
+-> mkdir ~/scratch/spool/mpd
+Next, create the configuration file for mpd, say ~/audio/mpd.conf; it can go anywhere.
+music_directory    "/home/ray/audio/music"
+playlist_directory "/home/ray/audio/playlists"
+
+db_file            "/home/ray/scratch/spool/mpd/mpd.db"
+log_file           "/home/ray/scratch/spool/mpd/log"
+pid_file           "/home/ray/scratch/spool/mpd/pid"
+state_file         "/home/ray/scratch/spool/mpd/mpdstate"
+
+zeroconf_name "Desktop Music Collection"
+
+audio_output {
+   type	"pulse"
+   name	"PulseAudio output on Desktop"
+}
+To run the MPD server:
+-> mpd ~/audio/mpd.conf
+To stop the MPD server:
+-> mpd ~/audio/mpd.conf --kill
+To allow MPD clients to connect to mpd from elsewhere on the network, open the host's firewall to TCP traffic on port 6600. To have mpd listen to another port instead, assign that number to the port parameter in the configuration file. MPD clients running on the same host as the server connect via localhost and thus do not need any port to be opened.
+For its collection of music, mpd maintains its own database in db_file, which it builds by scanning the directory tree of music_dir. Apparently, it creates the initial database automatically. However, it updates an existing database only on instruction from a client even if the music_dir changes. (But see option auto_update.)
+By default, mpd advertises its presence over Zerconf as a service of type Music Player Daemon (_mpd._tcp) that is named "Music Player." Change this name with zeroconf_name; e.g. "Desktop Music Collection" above. Setting zeroconf_enabled to "no" prevents publishing the server's presence.
+Ultimately, mpd outputs the playing song to a sound subsystem, of which there are several possibilities under Linux. The configuration file above directs mpd to use the PulseAudio sound server for the destination of its audio playback. To see all supported outputs compiled into mpd:
+-> mpd --version
+...
+Supported outputs:
+
+shout null fifo alsa ao oss pulse jack httpd recorder 
+...
+MDP allows multiple outputs; specify each with a separate audio_output block.
+There are lots more options. See /etc/mpd.conf and the mpd.conf man page for details.
+HTTP Streaming
+
+In addition to playing music on its host's sound card, MPD can stream music via the host's network card. In this way, a remote music player can play this stream on the sound card of its host, Remote players do need not to support the MPD protocol. Rhythmbox and Banshee, for example, treat MPD's HTTP stream as an Internet radio station. To have mpd stream over HTTP, add the following to the configuration file:
+audio_output {
+	type		"httpd"
+	name		"HTTP stream on Desktop"
+	encoder		"vorbis"		# optional, vorbis or lame
+	port		"8000"
+	bind_to_address	"0.0.0.0"		# optional, IPv4 or IPv6
+#	quality		"5.0"			# do not define if bitrate is defined
+	bitrate		"128"			# do not define if quality is defined
+	format		"44100:16:1"
+	max_clients	"0"			# optional 0=no limit
+}
+Then, open the host's firewall to TCP connections on port 8000.
+To access the HTTP stream from a music player, use the URL of the MPD server's host with the port number appended. For example, if the MPD server runs on host desktop.home, then specify http://desktop.home:8000 to the remote music player.
+An MPD client can direct the server to simultaneously play and stream the current song, or it can instruct the server to use just one of the two outputs. A remote music player listening to the MPD stream cannot control the MPD server; it's a passive receiver only.
+Internet Radio
+
+MPD can also relay an Internet radio stream onto its outputs. For each station, create a playlist with a single entry giving the stream's URL. For example:
+-> echo http://207.245.67.204:80 > playlists/Radio-WHYY-Philadelphia.m3u
+If the station describes its stream in a PLS file, you'll need to extract the stream's URL, like so:
+-> curl --silent http://207.245.67.206/listen.pls | grep File
+File1=http://207.245.67.206:80/
+-> echo http://207.245.67.206:80/ > playlists/Radio-WHYY-HD-Philadelphia.m3u 
+To listen to a station, simply load its playlist onto an empty queue.
+Clients
+
+The CLI client mpc incidentally demonstrates the server's capabilities; see its man page.
+The GNOME Music Player Client (GMPC) taps Avahi for published MPD servers. It stores its configuration files in ~/.config/gmpc, and it stores downloaded metadata under ~/.cache/gmpc.
+Playlists
+
+Use command-line tool fapg, the Fast Audio Playlist Generator, to build playlists of the music files in a directory. It supports a variety of list formats: M3U, PLS, XSPF, HTML, RSS, PLA, TXX.
+Specify genres to includ in a list with the --genre option. It requires ID3 genre numbers to identify
+Parole Media Player
+
+ Here are the GStreamer plugins I've explicitly installed for Parole: gstreamer-ffmpeg for Apple Lossless Audio Codec (m4a); gstreamer-plugins-ugly for MP3.
+PulseAudio
+
+Home PulseAudio
+ pavucontrol (package of same name); no man page—just run it for GUI.
+ Use GUI paprefs (package of same name) to control a running PulseAudio server—network sharing, multicast/RTP, simultaneous output to multiple devices, etc. The details depend on what modules are installed. There's no man page, but the options are largely self-explanatory. paprefs requires module pulseaudio-module-gconf.
+ To add support for using other PulseAudio sound servers on the LAN or for sharing the local PulseAudio sound server over the LAN, install package pulseaudio-module-zeroconf.
+ For Bluetooth audio, install package pulseaudio-module-bluetooth.
+ Package pulseaudio-utils provides commands pacat, pacmd, pactl, pamon, paplay, parec, parecord, and others.
+Rhythmbox
+
+Home Wikipedia
+To set preferences for plugins, select Edit/Plugins to open the Configure Plugins dialog, and select the plugin of interest. If that plugin offers customization, the Preferences button at the bottom of the dialog is activated.
+Rhythmbox stores settings in directory .local/share/rhythmbox. In particular, the music library goes into rhythmdb.xml, and playlists go into playlists.xml.
+Music Sharing
+
+Using the DAAP Music Sharing plugin, Rhythmbox can share its library to other players on the LAN and it can play music in other shared libraries on the LAN. Enable or disable the plugin via Edit/Plugins; there are a few preferences. It appears that the plugin enables both incoming and outgoing DAAP connections and lacks an option to enable just one or the other.
+In Zerconf, Rhythmbox's advertises its DAAP share under service type iPod Touch Music Library (_touch-able._tcp). For a service name, it gets a twelve digit number (eg. 7C9770717C97) of unknown (to me) provenance. As a client, Rhythmbox does not automatically display other iPod Touch Music Libraries available on the LAN. To connect to another DAAP library, open Music/Connect to DAAP Share and enter the name of the computer hosting the share.
+Rhythmbox can additionally advertise its shared library under Zerconf type iTunes Audio Access (_daap._tcp) with a chosen service name. For this, enable Share my music and set the Library name in the preference dialog. As a client, Rhythmbox automatically lists available iTunes Audio Access libraries, and there is no need to open Music/Connect to DAAP Share for these. Instead, just click on the name to access the library.
+Tag Editing
+
+The popular audio-file formats support tags or metadata describing the embedded music. Here is a good overview of MP3's ID3 Tags.
+Most music management programs provide tag editing. For stand-alone editing and batch processing, see also:
+Use id3v2 for MP3 files (ID3 metadata), from command line.
+Use metaflac for FLAC files (Vorbis comments), from command line.
+The GNOME editor EasyTag handles metadata for MP3, MP4/AAC, FLAC, Ogg Vorbis, WavPack, and others.
+Under Windows, consider MP3Tag for ID3, Vorbis Comments, and APE.
+Ray's Notebook § Computing

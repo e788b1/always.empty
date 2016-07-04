@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=VIM
+Exec=vim_scratchpad %f
+Categories=Utility;TextEditor;GTK;
+MimeType=text/plain
+Terminal=true
+X-KeepTerminal=false

@@ -1,0 +1,16 @@
+[http]
+	sslVerify = false
+[user]
+	email = e788b1@gmail.com
+	name = e788b1
+
+; [format]
+    ; numbered = auto
+
+; [color]
+    ; branch = yes
+    ; diff   = auto
+    ; pager  = yes
+    ; status = auto
+
+

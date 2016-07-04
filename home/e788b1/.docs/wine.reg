@@ -1,0 +1,34 @@
+REGEDIT4
+[HKEY_CURRENT_USER\Software\Wine\X11 Driver]
+"ClientSideAntiAliasWithCore"="N"
+"ClientSideAntiAliasWithRender"="N"
+"ClientSideWithRender"="N"
+[HKEY_CURRENT_USER\Control Panel\Desktop]
+"FontSmoothing"="0"
+"FontSmoothingType"=dword:00000002
+"FontSmoothingGamma"=dword:00000578
+"FontSmoothingOrientation"=dword:00000001
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]
+"Arial Baltic,186"="Simsun"
+"Arial CE,238"="Simsun"
+"Arial CYR,204"="Simsun"
+"Arial Greek,161"="Simsun"
+"Arial TUR,162"="Simsun"
+"Courier New Baltic,186"="Simsun"
+"Courier New CE,238"="Simsun"
+"Courier New CYR,204"="Simsun"
+"Courier New Greek,161"="Simsun"
+"Courier New TUR,162"="Simsun"
+"Helv"="Simsun"
+"Helvetica"="Simsun"
+"MS Shell Dlg"="Simsun"
+"MS Shell Dlg 2"="Simsun"
+"Tahoma"="Tahoma"
+"Times"="Simsun"
+"Times New Roman Baltic,186"="Simsun"
+"Times New Roman CE,238"="Simsun"
+"Times New Roman CYR,204"="Simsun"
+"Times New Roman Greek,161"="Simsun"
+"Times New Roman TUR,162"="Simsun"
+"Tms Rmn"="Simsun"
+"Simsun"="Simsun"

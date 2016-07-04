@@ -1,0 +1,128 @@
+app-emulation/winetricks **
+x11-wm/i3
+media-libs/libmtp
+media-libs/fontconfig
+
+media-libs/libaacplus
+media-video/mpv
+media-video/ffmpeg
+media-libs/x264
+media-libs/x265
+
+dev-python/notify2
+app-shells/zsh-completions
+dev-python/i3-py
+x11-misc/dunst
+www-client/google-chrome
+app-arch/upx-bin
+x11-terms/lilyterm
+kde-misc/kio-mtp
+net-misc/youtube-dl
+media-fonts/monaco
+app-i18n/fbterm
+x11-misc/py3status
+app-misc/bgrep
+app-text/docx2txt
+media-gfx/feh
+media-gfx/nomacs
+x11-misc/i3lock
+x11-misc/dmenu
+dev-util/android-studio
+www-client/google-chrome-beta
+media-fonts/powerline-symbols
+x11-misc/lemonbar
+x11-themes/paper-icon-theme **
+x11-themes/paper-gtk-theme **
+media-plugins/vapoursynth-mvtools
+app-portage/layman
+=dev-python/ssl-fetch-0.4 ~amd64
+media-libs/vapoursynth
+media-video/mpv
+
+app-text/zathura*
+dev-libs/girara
+media-video/obs-studio
+dev-python/pysrt
+media-video/avidemux
+media-libs/avidemux-core
+media-libs/avidemux-plugins
+app-emulation/winetricks
+# required by wineqq (argument)
+=net-im/wineqq-20140102 ~amd64
+x11-misc/pcmanfm-qt
+media-video/smplayer
+net-misc/kuaipan4uk
+# required by net-misc/bcloud-3.8.1::gentoo-zh[indicator]
+# required by bcloud (argument)
+=dev-libs/libappindicator-12.10.0-r300 ~amd64
+# required by dev-libs/libappindicator-12.10.0-r300::gentoo
+# required by net-misc/bcloud-3.8.1::gentoo-zh[indicator]
+# required by bcloud (argument)
+=dev-libs/libindicator-12.10.1-r301 ~amd64
+# required by bcloud (argument)
+net-misc/bcloud **
+=sci-libs/ldl-2.1.0 ~amd64
+media-gfx/blender
+media-gfx/nomacs
+media-video/cinelerra
+media-video/pitivi
+# required by media-video/pitivi-0.95::gentoo
+# required by media-video/pitivi (argument)
+=media-libs/gstreamer-editing-services-1.6.2 ~amd64
+# required by media-libs/gst-plugins-bad-1.6.2-r1::gentoo
+# required by media-video/pitivi-0.95::gentoo
+# required by media-video/pitivi (argument)
+=media-libs/gst-plugins-base-1.6.2 ~amd64
+# required by media-video/pitivi-0.95::gentoo
+# required by media-video/pitivi (argument)
+=media-libs/gst-plugins-bad-1.6.2-r1 ~amd64
+# required by media-video/pitivi-0.95::gentoo
+# required by media-video/pitivi (argument)
+=media-plugins/gst-plugins-libav-1.6.2-r1 ~amd64
+# required by media-plugins/gst-plugins-v4l2-1.4.5::gentoo
+# required by media-video/pitivi-0.95::gentoo[v4l]
+# required by media-video/pitivi (argument)
+=media-libs/gst-plugins-good-1.6.2 ~amd64
+# required by media-libs/gnonlin-1.4.0::gentoo
+# required by media-libs/gstreamer-editing-services-1.6.2::gentoo
+# required by media-video/pitivi-0.95::gentoo
+# required by media-video/pitivi (argument)
+=media-libs/gstreamer-1.6.2 ~amd64
+media-video/lightworks
+x11-terms/rxvt-unicode
+net-misc/bypy **
+net-misc/you-get
+media-video/rtmpdump **
+sys-libs/binutils-libs
+x11-libs/cairo
+sys-devel/binutils-config
+net-misc/xunlei-lixian **
+media-libs/mesa
+sys-devel/clang
+sys-devel/llvm
+net-misc/aria2
+media-libs/freetype
+www-client/firefox-bin
+sys-fs/aufs3 **
+net-misc/pavuk
+app-arch/duff
+x11-libs/libdrm
+media-sound/split2flac
+media-sound/aacgain
+app-emulation/virtualbox
+app-emulation/virtualbox-modules
+dev-libs/crossguid
+media-sound/dcadec
+app-crypt/fcrackzip
+net-wireless/aircrack-ng
+media-video/baka-mplayer
+media-video/vlc
+kde-misc/yakuake
+# required by media-sound/netease-cloud-music-0.9.0-r2::everlay
+# required by netease-cloud-music (argument)
+=sys-devel/gcc-5.4.0 ~amd64
+# required by netease-cloud-music (argument)
+=media-sound/netease-cloud-music-0.9.0-r2 ~amd64
+=sys-kernel/gentoo-sources-4.6.2
+sys-kernel/gentoo-sources
+media-video/handbrake

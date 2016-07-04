@@ -1,0 +1,38 @@
+#!/bin/bash
+###  login and get cookie0
+curl -c cookie0.txt -d "username=example@163.com&password=123456" http://www.kuaipan.cn/accounts/login/
+
+###  send cookie0 and login and get cookie1
+curl -b cookie0.txt -c cookie1.txt -L http://www.kuaipan.cn/n/drive/#\!/index
+
+###  relogin and get cookie2
+#curl -c cookie3.txt -b cookie1.txt http://www.kuaipan.cn/accounts/relogin
+
+###  get xsrf
+curl -G -I -o xsrf.txt -b cookie1.txt -c cookie2.txt http://web.kuaipan.cn/n/drive/home.tmpl/upload
+xsrf=$(cat xsrf.txt | grep xsrf | cut -d = -f 2 | cut -d ';' -f 1)
+echo ${xsrf}
+
+###  get send url
+curl -o url.txt -b cookie2.txt -d "parentId=0&name=readme.txt" -H 'Referer:http://web.kuaipan.cn/n/drive/files' -H 'Host:web.kuaipan.cn' -H "X-XSRF-TOKEN:${xsrf}" -H 'X-Requested-With:XMLHttpRequest' http://web.kuaipan.cn/n/s3/getUploadUrl
+url=$(cat url.txt | cut -d '"' -f 4)
+echo ${url}
+
+###   pre request  OPTIONS
+curl -X OPTIONS -H 'Origin:http://web.kuaipan.cn' -H 'Access-Control-Request-Headers:content-type' -H 'Access-Control-Request-Method:POST' -H 'Connection:keep-alive' ${url}
+
+###   POST FILE
+curl -o respfile.txt -X POST -F "kssfile=@readme.txt" -H 'Origin:http://web.kuaipan.cn' -H 'Referer: http://web.kuaipan.cn/n/drive/index' -H 'Connection: keep-alive' ${url}
+
+i=$(cat respfile.txt | cut -d '"' -f 4)
+echo $i
+stat=$(cat respfile.txt | cut -d '"' -f 8)
+echo $stat
+sha1=$(cat respfile.txt | cut -d '"' -f 12)
+echo $sha1
+#size=$(cat respfile.txt | cut -d '"' -f 15)
+size=22
+echo $size
+###   last step
+curl -b cookie2.txt -d "parentId=0&name=readme.txt&i=${i}&stat=${stat}&sha1=${sha1}&size=${size}" -H 'Host:web.kuaipan.cn' -H "X-XSRF-TOKEN:${xsrf}" -H 'X-Requested-With:XMLHttpRequest' http://web.kuaipan.cn/n/s3/report
+

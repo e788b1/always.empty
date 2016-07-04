@@ -1,0 +1,89 @@
+! Xresources
+Xcursor.theme: slitaz-polar
+Xcursor.size: 16
+URxvt*font:   xft:Terminus-10, xft:WenQuanYi Bitmap Song-10, xft:Symbola-10
+!, xft:DejaVu Sans Mono-10,xft:unifont-10
+Rxvt.preeditType:Root
+URxvt.termName    : rxvt-256color
+URxvt.iso14755    : false
+URxvt.urgentOnBell: true
+URxvt.saveLines   : 12000
+URxvt.scrollBar   : false
+URxvt.scrollstyle : rxvt
+URxvt.print-pipe: cat > /tmp/URxvt.print-pipe
+URxvt.perl-ext-common:default,clipboard,font-size,matcher,keyboard-select,url-select
+URxvt.keysym.M-x           : perl:keyboard-select:activate
+URxvt.keysym.M-c           : perl:clipboard:copy
+URxvt.keysym.M-v           : perl:clipboard:paste
+URxvt.keysym.M-C-v         : perl:clipboard:paste_escaped
+URxvt.keysym.C-equal       : perl:font-size:increase
+URxvt.keysym.C-minus       : perl:font-size:decrease
+URxvt.keysym.M-u           : perl:url-select:select_next
+URxvt.url-select.launcher  : xdg-open
+URxvt.url-select.autocopy  : true
+URxvt.url-select.underline : true
+URxvt.matcher.button       : 1
+URxvt.colorIT:           #b58900
+URxvt.colorBD:           #d33682
+URxvt.colorUL:           #268bd2
+! #include "Xresources.solarized"
+! #include "Xresources.light"
+
+!photons
+
+! slightly beige white
+*foreground: #DDCCBB
+*background: #080C0D
+
+! black
+*color0: #080C0D
+
+! red
+*color1: #e0374f
+
+! green
+*color2: #85c600
+
+! orange/yellow
+*color3: #ffa600
+
+! blue
+*color4: #0099bc
+
+! pink
+*color5: #e50c88
+
+! light blue gray
+*color6: #7fc5c6
+
+! light gray
+*color7: #cccccc
+
+! very dark gray
+*color8: #283032
+
+! orange
+*color9: #ff5b47
+
+! light green
+*color10: #b3ff14
+
+! orange/yellow
+*color11: #ffaa04
+
+! light blue
+*color12: #5adede
+
+! raspberry
+*color13: #be4372
+
+! light blue gray
+*color14: #75b2b3
+
+! gray
+*color15: #eeeeee
+
+! border
+! #80766C
+
+!!!!!!!!!!!!!!!!!!!!

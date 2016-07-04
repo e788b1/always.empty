@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=hexedit
+Exec=hexedit %f
+Categories=Utility;;TextEditor;GTK;
+NoDisplay=false
+MimeType=application/x-executable;application/octet-stream;
+Terminal=true
+X-KeepTerminal=false

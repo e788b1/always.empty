@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source /etc/portage/make.conf
+SQFS_CURRENT=/home/overlay/squashfs/gentoo-current.lzo.sqfs
+mount -rt squashfs -o loop,nodev,noexec ${SQFS_CURRENT} ${PORTDIR}

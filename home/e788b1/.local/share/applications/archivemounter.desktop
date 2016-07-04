@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Archive Mounter
+Exec=/usr/libexec/gvfsd-archive file=%u
+Categories=GTK;GNOME;Utility;Archiving;Compression;X-GNOME-Utilities;
+MimeType=application/x-cd-image
+Terminal=false

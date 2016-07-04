@@ -1,0 +1,15 @@
+[Added Associations]
+inode/directory=qcomicbook.desktop;
+text/plain=mousepad.desktop;
+application/x-rar=org.gnome.FileRoller.desktop;
+application/zip=org.gnome.FileRoller.desktop;
+audio/x-vorbis+ogg=mpv.desktop;
+application/x-mobipocket-ebook=zathura.desktop;
+application/x-shellscript=mousepad.desktop;
+
+[Default Applications]
+text/plain=mousepad.desktop
+application/x-rar=org.gnome.FileRoller.desktop
+application/zip=org.gnome.FileRoller.desktop
+audio/x-vorbis+ogg=mpv.desktop
+application/x-shellscript=mousepad.desktop

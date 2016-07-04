@@ -1,0 +1,171 @@
+>=dev-libs/wayland-1.9.0 abi_x86_32
+>=x11-libs/libXdmcp-1.1.1-r1 abi_x86_32
+>=sys-libs/ncurses-5.9-r3 abi_x86_32
+>=x11-proto/presentproto-1.0 abi_x86_32
+>=x11-proto/dri2proto-2.8-r1 abi_x86_32
+>=x11-proto/randrproto-1.4.0-r1 abi_x86_32
+>=media-libs/mesa-10.3.7-r1 abi_x86_32
+>=x11-libs/libXau-1.0.8 abi_x86_32
+>=x11-libs/libXext-1.3.3 abi_x86_32
+>=x11-proto/inputproto-2.3.1 abi_x86_32
+>=x11-proto/xextproto-7.3.0 abi_x86_32
+>=virtual/opengl-7.0-r1 abi_x86_32
+>=virtual/glu-9.0-r1 abi_x86_32
+>=x11-proto/glproto-1.4.17 abi_x86_32
+>=sys-fs/udev-216 abi_x86_32
+>=sys-apps/attr-2.4.47-r1 abi_x86_32
+>=virtual/libiconv-0-r2 abi_x86_32
+>=x11-proto/damageproto-1.2.1-r1 abi_x86_32
+>=x11-proto/xf86driproto-2.1.1-r1 abi_x86_32
+>=media-libs/glu-9.0.0-r1 abi_x86_32
+>=x11-proto/kbproto-1.0.6-r1 abi_x86_32
+>=x11-libs/libxshmfence-1.2 abi_x86_32
+>=x11-proto/videoproto-2.3.2 abi_x86_32
+>=app-arch/bzip2-1.0.6-r6 abi_x86_32
+>=x11-libs/libXinerama-1.1.3 abi_x86_32
+>=virtual/libudev-215-r1 abi_x86_32
+>=x11-proto/renderproto-0.11.1-r1 abi_x86_32
+>=x11-proto/xineramaproto-1.2.1-r1 abi_x86_32
+>=sys-libs/zlib-1.2.8-r1 abi_x86_32
+>=x11-libs/libvdpau-0.9 abi_x86_32
+>=x11-libs/libXv-1.0.10 abi_x86_32
+>=sys-libs/gpm-1.20.7-r2 abi_x86_32
+>=x11-libs/libXvMC-1.0.8 abi_x86_32
+>=x11-proto/xproto-7.0.27 abi_x86_32
+>=dev-libs/expat-2.1.0-r4 abi_x86_32
+>=x11-libs/libdrm-2.4.59 abi_x86_32
+>=dev-libs/libffi-3.0.13-r1 abi_x86_32
+>=dev-libs/elfutils-0.158 abi_x86_32
+>=x11-libs/libXfixes-5.0.1 abi_x86_32
+>=dev-libs/glib-2.42.2 abi_x86_32
+>=sys-devel/llvm-3.5.0 abi_x86_32
+>=x11-proto/dri3proto-1.0 abi_x86_32
+>=x11-proto/xcb-proto-1.11 abi_x86_32
+>=x11-libs/libXdamage-1.1.4-r1 abi_x86_32
+>=x11-libs/libXrandr-1.4.2 abi_x86_32
+>=x11-proto/xf86vidmodeproto-2.3.1-r1 abi_x86_32
+>=x11-proto/fixesproto-5.0-r1 abi_x86_32
+>=x11-libs/libXxf86vm-1.1.4 abi_x86_32
+>=x11-libs/libXrender-0.9.8 abi_x86_32
+>=x11-libs/libxcb-1.11-r1 abi_x86_32
+>=x11-libs/libX11-1.6.2 abi_x86_32
+>=virtual/libffi-3.0.13-r1 abi_x86_32
+>=dev-libs/libpthread-stubs-0.3-r1 abi_x86_32
+>=x11-proto/xf86bigfontproto-1.2.0-r1 abi_x86_32
+>=x11-libs/libXi-1.7.4 abi_x86_32
+>=sys-apps/dbus-1.8.16 abi_x86_32
+>=dev-libs/nettle-2.7.1-r4 abi_x86_32
+>=media-libs/fontconfig-2.11.1-r2 abi_x86_32
+>=x11-libs/libXcomposite-0.4.4-r1 abi_x86_32
+>=dev-util/pkgconfig-0.28-r2 abi_x86_32
+>=media-libs/libjpeg-turbo-1.3.1 abi_x86_32
+>=x11-libs/libXcursor-1.1.14 abi_x86_32
+>=net-libs/gnutls-3.3.15 abi_x86_32
+>=net-libs/libasyncns-0.8-r3 abi_x86_32
+>=sys-apps/tcp-wrappers-7.6.22-r1 abi_x86_32
+>=dev-libs/libgcrypt-1.5.4-r1 abi_x86_32
+>=virtual/jpeg-0-r2:0 abi_x86_32
+>=media-libs/libsndfile-1.0.25-r1 abi_x86_32
+>=dev-libs/icu-55.1 abi_x86_32
+>=media-plugins/alsa-plugins-1.0.29 abi_x86_32
+>=media-sound/mpg123-1.18.1 abi_x86_32
+>=media-libs/libpng-1.6.16 abi_x86_32
+>=dev-libs/libxml2-2.9.2-r1 abi_x86_32
+>=dev-libs/openssl-1.0.1o abi_x86_32
+>=x11-libs/libSM-1.2.2-r1 abi_x86_32
+>=media-libs/lcms-2.6-r1 abi_x86_32
+>=media-libs/flac-1.3.1-r1 abi_x86_32
+>=dev-libs/libgpg-error-1.13 abi_x86_32
+>=dev-libs/libtasn1-4.5 abi_x86_32
+>=net-nds/openldap-2.4.38-r2 abi_x86_32
+>=x11-proto/recordproto-1.14.2-r1 abi_x86_32
+>=sys-libs/libcap-2.22-r2 abi_x86_32
+>=x11-libs/libXtst-1.2.2 abi_x86_32
+>=sys-devel/gettext-0.19.4 abi_x86_32
+>=media-libs/alsa-lib-1.0.29 abi_x86_32
+>=media-libs/libvorbis-1.3.4 abi_x86_32
+>=dev-libs/libxslt-1.1.28-r4 abi_x86_32
+>=dev-libs/gmp-5.1.3-r1 abi_x86_32
+>=media-libs/libv4l-1.6.2 abi_x86_32
+>=media-libs/libogg-1.3.1 abi_x86_32
+>=x11-libs/libICE-1.0.9 abi_x86_32
+>=dev-libs/json-c-0.11-r1 abi_x86_32
+>=x11-proto/compositeproto-0.4.2-r1 abi_x86_32
+>=media-libs/freetype-2.5.5 abi_x86_32
+>=media-libs/tiff-4.0.3-r6 abi_x86_32
+>=virtual/libintl-0-r1 abi_x86_32
+>=virtual/pkgconfig-0-r1 abi_x86_32
+>=sys-apps/util-linux-2.25.2-r2 abi_x86_32
+>=media-sound/pulseaudio-5.0-r7 abi_x86_32
+# required by virtual/libgudev-230::gentoo
+# required by media-plugins/gst-plugins-v4l2-0.10.31-r1::gentoo[udev]
+# required by media-plugins/gst-plugins-meta-0.10-r10::gentoo[v4l]
+# required by media-sound/clementine-1.2.3::gentoo
+# required by @selected
+# required by @world (argument)
+>=dev-libs/libgudev-230 introspection
+# required by media-video/ffmpeg-2.8.4::gentoo[encode,x264]
+# required by virtual/ffmpeg-9-r2::gentoo[-libav]
+# required by media-plugins/alsa-plugins-1.0.29::gentoo[ffmpeg]
+# required by @selected
+# required by @world (argument)
+>=media-libs/x264-0.0.20151011 abi_x86_32
+# required by media-plugins/alsa-plugins-1.0.29::gentoo[ffmpeg]
+# required by @selected
+# required by @world (argument)
+>=virtual/ffmpeg-9-r2 abi_x86_32
+# required by virtual/ffmpeg-9-r2::gentoo[-libav]
+# required by media-plugins/alsa-plugins-1.0.29::gentoo[ffmpeg]
+# required by @selected
+# required by @world (argument)
+>=media-video/ffmpeg-2.8.4 abi_x86_32
+# required by media-video/ffmpeg-2.8.4::gentoo[wavpack,encode]
+# required by virtual/ffmpeg-9-r2::gentoo[-libav]
+# required by media-plugins/alsa-plugins-1.0.29::gentoo[ffmpeg]
+# required by @selected
+# required by @world (argument)
+>=media-sound/wavpack-4.70.0 abi_x86_32
+# required by media-video/ffmpeg-2.8.4::gentoo[x265,encode]
+# required by virtual/ffmpeg-9-r2::gentoo[-libav]
+# required by media-plugins/alsa-plugins-1.0.29::gentoo[ffmpeg]
+# required by @selected
+# required by @world (argument)
+>=media-libs/x265-1.8-r3 abi_x86_32
+# required by media-video/ffmpeg-2.8.4::gentoo[encode,mp3]
+# required by virtual/ffmpeg-9-r2::gentoo[-libav]
+# required by media-plugins/alsa-plugins-1.0.29::gentoo[ffmpeg]
+# required by @selected
+# required by @world (argument)
+>=media-sound/lame-3.99.5-r1 abi_x86_32
+# required by media-video/ffmpeg-2.8.4::gentoo[aac,encode]
+# required by virtual/ffmpeg-9-r2::gentoo[-libav]
+# required by media-plugins/alsa-plugins-1.0.29::gentoo[ffmpeg]
+# required by @selected
+# required by @world (argument)
+>=media-libs/vo-aacenc-0.1.3 abi_x86_32
+# required by media-libs/libsdl-1.2.15-r9::gentoo[sound]
+# required by media-video/ffmpeg-2.8.4::gentoo[sdl]
+# required by virtual/ffmpeg-9-r2::gentoo[-libav]
+# required by media-plugins/alsa-plugins-1.0.29::gentoo[ffmpeg]
+# required by @selected
+# required by @world (argument)
+>=media-libs/audiofile-0.3.6-r1 abi_x86_32
+# required by media-video/ffmpeg-2.8.4::gentoo[sdl]
+# required by virtual/ffmpeg-9-r2::gentoo[-libav]
+# required by media-plugins/alsa-plugins-1.0.29::gentoo[ffmpeg]
+# required by @selected
+# required by @world (argument)
+>=media-libs/libsdl-1.2.15-r9 abi_x86_32
+# required by media-video/ffmpeg-2.8.4::gentoo[encode,xvid]
+# required by virtual/ffmpeg-9-r2::gentoo[-libav]
+# required by media-plugins/alsa-plugins-1.0.29::gentoo[ffmpeg]
+# required by @selected
+# required by @world (argument)
+>=media-libs/xvid-1.3.3 abi_x86_32
+# required by media-video/ffmpeg-2.8.4::gentoo[aacplus,encode]
+# required by virtual/ffmpeg-9-r2::gentoo[-libav]
+# required by media-plugins/alsa-plugins-1.0.29::gentoo[ffmpeg]
+# required by @selected
+# required by @world (argument)
+>=media-libs/libaacplus-2.0.2-r2 abi_x86_32
+>=media-libs/libtheora-1.1.1-r1 abi_x86_32

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# export LANG=zh_CN.utf8
+WINEPREFIX="/home/e788b1/.wine"
+APP="Netease/CloudMusic/cloudmusic.exe"
+
+env WINEPREFIX="$WINEPREFIX" wine "$WINEPREFIX""/drive_c/Program Files/""$APP"

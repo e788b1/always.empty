@@ -1,0 +1,86 @@
+media-tv/kodi rtmp avahi webserver
+app-arch/rarcrack zip rar 7zip
+app-arch/p7zip rar
+sci-libs/fftw -openmp
+media-libs/libraw -openmp
+media-sound/pulseaudio equalizer
+
+app-admin/conky hddtemp iostats mpd wifi
+net-misc/aria2 adns bittorrent metalink scripts sqlite xmlrpc
+dev-qt/qtsql mysql
+kde-apps/dolphin thumbnail
+media-video/vlc -qt4
+app-arch/unzip natspec
+media-libs/mesa gles2 wayland
+app-arch/zip natspec
+app-editors/vim cscope
+app-emulation/virtualbox extensions
+app-i18n/fbterm caps
+app-i18n/fcitx -autostart -enchant table
+app-text/ghostscript-gpl cups
+app-emulation/wine linguas_zh_CN staging -abi_x86_64 -realtime -udisks
+dev-qt/qtchooser qt5
+dev-lang/python sqlite
+app-emulation/winetricks -gtk
+dev-libs/elfutils static-libs
+dev-libs/libpcre pcre16
+dev-libs/nss utils
+dev-python/PyQt4 declarative script sql svg webkit
+kde-apps/kio-extras samba mtp
+dev-qt/qtwebkit printsupport
+dev-util/cmake -qt4 -qt5
+gnome-base/gvfs archive fuse mtp samba
+net-fs/samba client
+xfce-extra/tumbler ffmpeg
+kde-apps/kdebase-kioslaves samba
+kde-apps/okular chm djvu dpi ebook mobi -crypt
+media-fonts/source-han-sans linguas_zh_CN
+media-fonts/source-pro -cjk
+media-libs/freetype infinality
+media-libs/libpng apng
+media-libs/phonon designer
+media-sound/ncmpcpp clock outputs taglib visualizer
+media-video/mpv libmpv samba libcaca dvd
+media-video/ffmpeg libass
+app-emulation/qemu -curl -jpeg -png -python -vnc spice usbredir
+media-libs/x264 10bit
+app-text/zathura-meta cb djvu
+net-nds/openldap minimal
+net-proxy/goagent -gtk
+net-wireless/wpa_supplicant -qt4
+sys-apps/dstat wifi
+sys-fs/squashfs-tools lzo
+sys-fs/udev gudev introspection
+sys-libs/zlib minizip
+virtual/libgudev introspection
+www-client/w3m fbcon imlib
+x11-libs/libdrm libkms
+x11-libs/libxcb xkb
+x11-terms/rxvt-unicode 256-color alt-font-width fading-colors unicode3 wcwidth -mousewheel -vanilla
+x11-themes/faenza-icon-theme minimal
+x11-misc/dunst dunstify
+x11-misc/redshift -gtk
+x11-themes/mate-icon-theme-faenza minimal
+media-video/ffmpeg aac aacplus theora
+# x11-themes/qtcurve qt5 kde
+media-sound/split2flac enca imagemagick mac mp4 replaygain flake
+media-sound/shntool mac
+media-libs/libmp4v2 utils
+gnustep-base/gnustep-make native-exceptions
+# www-client/firefox bindist pgo minimal system-sqlite system-icu system-jpeg custom-cflags custom-optimization
+dev-db/sqlite secure-delete
+net-misc/youtube-dl offensive
+media-gfx/nomacs -tiff zip
+# media-fonts/corefonts tahoma
+dev-vcs/git tk
+media-sound/audacious chardet qt5
+>=dev-libs/libdbusmenu-12.10.2-r2 gtk3
+media-plugins/audacious-plugins cue
+net-misc/ntp caps
+kde-apps/libkexiv2 -xmp
+kde-apps/* -handbook
+kde-base/* -handbook
+media-gfx/exiv2 -xmp
+x11-themes/adwaita-icon-theme branding
+x11-themes/gnome-icon-theme branding
+dev-lang/ghc binary ghcbootstrap

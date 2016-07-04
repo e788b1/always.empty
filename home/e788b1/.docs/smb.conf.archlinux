@@ -1,0 +1,57 @@
+[global]
+    deadtime = 60
+    ; This is useful to stop a server's resources being exhausted by a large number of inactive connections
+    disable netbios = yes
+    ; Disable netbios announcing
+    dns proxy = no
+    ; nmbd spawns a second copy of itself to do the DNS name lookup requests on 'yes'
+    hosts allow = 192.168.1. 127. 10.
+    ; This parameter is a comma, space, or tab delimited set of hosts which are permitted to access a service
+    invalid users = root
+    ; This is a list of users that should not be allowed to login to this service
+    security = user
+    ; Use as standalone file server
+    map to guest = Bad User
+    ; Means user logins with an invalid password are rejected, or allow guest login and mapped into the guest account
+    max connections = 100
+    ; Number of simultaneous connections to a service to be limited
+    workgroup = WORKGROUP
+    ; Workgroup the server will appear to be in when queried by clients
+
+    ; disable printer support
+    load printers = no
+    printing = bsd
+    printcap name = /dev/null
+    disable spoolss = yes
+
+    ; Default permissions for all shares
+    inherit owner = yes
+    ; Take the ownership of the parent directory when creating files/folders
+    create mask = 0664
+    ; Create file mask
+    directory mask = 0775
+    ; Create director mask
+    force create mode = 0664
+    ; Force create file mask
+    force directory mode = 0775
+    ; Force create directory mask
+
+; Private Share
+[lost+found]
+; translate into: \\server\private
+    comment = My Private Share
+    ; Seen next to a share when a client queries the server
+    path = /run/media/e788b1
+    ; Directory to which the user of the service is to be given access
+    read only = no
+    ; An inverted synonym to writeable.
+    valid users = e788b1
+    ; user1 user2 @group1 @group2; restrict a service to a particular set of users and/or groups
+
+; Public Share
+[public]
+    comment = My Public Share
+    path = /home/e788b1/Public
+    read only = no
+    guest ok = yes
+    ; No password required to connect to the service

@@ -1,0 +1,36 @@
+REGEDIT4
+[HKEY_CURRENT_USER\Software\Wine\X11 Driver]
+"ClientSideAntiAliasWithCore"="Y"
+"ClientSideAntiAliasWithRender"="Y"
+"ClientSideWithRender"="Y"
+[HKEY_CURRENT_USER\Control Panel\Desktop]
+"FontSmoothing"="2"
+"FontSmoothingType"=dword:00000002
+"FontSmoothingGamma"=dword:00000578
+"FontSmoothingOrientation"=dword:00000001
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]
+"Arial Baltic,186"="Microsoft YaHei"
+"Arial CE,238"="Microsoft YaHei"
+"Arial CYR,204"="Microsoft YaHei"
+"Arial Greek,161"="Microsoft YaHei"
+"Arial TUR,162"="Microsoft YaHei"
+"Courier New Baltic,186"="Microsoft YaHei"
+"Courier New CE,238"="Microsoft YaHei"
+"Courier New CYR,204"="Microsoft YaHei"
+"Courier New Greek,161"="Microsoft YaHei"
+"Courier New TUR,162"="Microsoft YaHei"
+"Helv"="Microsoft YaHei"
+"Helvetica"="Microsoft YaHei"
+"MS Shell Dlg"="Microsoft YaHei"
+"MS Shell Dlg 2"="Microsoft YaHei"
+"Tahoma"="Microsoft YaHei"
+"Times"="Microsoft YaHei"
+"Times New Roman Baltic,186"="Microsoft YaHei"
+"Times New Roman CE,238"="Microsoft YaHei"
+"Times New Roman CYR,204"="Microsoft YaHei"
+"Times New Roman Greek,161"="Microsoft YaHei"
+"Times New Roman TUR,162"="Microsoft YaHei"
+"Tms Rmn"="Microsoft YaHei"
+"Simsun"="Microsoft YaHei"
+"Tms Rmn"="Microsoft YaHei"
+"MS Shell Dlg"="Microsoft YaHei"

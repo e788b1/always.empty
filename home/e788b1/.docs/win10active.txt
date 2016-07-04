@@ -1,0 +1,4 @@
+10.0.10176 activation:
+slmgr /ipk NPPR9-FWDCX-D2C8J-H872K-2YT43
+slmgr /skms http://kms.xspace.in 
+slmgr /ato 
