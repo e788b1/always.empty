@@ -39,5 +39,5 @@ echo -e "\e[0;3$(( RANDOM * 6 / 32767 + 1 ))mChop wood, carry water.\n\e[0m"
 source ~/.git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUPSTREAM="auto"
-PS1='$(__git_ps1 "\[\e[38;5;70m\]%s ")\[\e[1;32m\]\u@\h\[\e[1;34m\] \w λ\[\e[0m\] '
+PS1='$(__git_ps1 "\[\e[38;5;70m\]%s ")\[\e[1;32m\]\u@\h\[\e[1;34m\] \w \nλ\[\e[0m\] '
 
