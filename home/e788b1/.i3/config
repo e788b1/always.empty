@@ -1,6 +1,6 @@
 #=============================================================== Style
 #6c71c4 #d33682 #484e50 #586e75 #b492b6 #cb4b16
-font xft:Cronos Pro bold 10
+font xft:Cronos Pro bold 14
 # class                 border  backgr. text    indicator
 client.focused          #cb4b16 #cb4b16 #ffffff #484e50
 client.focused_inactive #2aa198 #2aa198 #eeeeee #586e75
@@ -12,7 +12,7 @@ bar {
         position top
         # mode     hide
         # strip_workspace_numbers yes
-        tray_output primary
+        # tray_output primary
         # tray_output LVDS
         status_command py3status -c ~/.i3/py3status.conf
         # status_command    i3status -c ~/.i3/i3status.conf
@@ -44,6 +44,7 @@ bindsym --whole-window $mod+Shift+button3 kill
 bindsym $mod+Return       exec $nsi urxvtc
 # bindsym $mod+Shift+Return exec $nsi lilyterm
 bindsym $mod+Shift+Return exec $nsi urxvtc_scratchpad
+bindsym $mod+semicolon exec $nsi lilyterm
 bindsym $mod+comma        exec $nsi xrandr-invert-colors.bin -s 1
 bindsym $mod+period       exec $nsi xrandr-invert-colors.bin -s 0
 bindsym $mod+Shift+comma  exec $nsi xrandr-invert-colors.bin
@@ -67,10 +68,11 @@ bindsym $mod+Shift+F10 exec $nsi i3action rmcurrentmusic
 bindsym $mod+F11 bar mode toggle
 bindsym $mod+F5 reload, exec $nsi notify-send "reload"
 bindsym $mod+Shift+F5 restart
+bindsym $mod+Shift+Ctrl+Delete exec $nsi gksudo -m "shutdown -H now" "shutdown -H 0"
+bindsym $mod+Shift+Ctrl+Break exec $nsi gksudo -m "pm-suspend" "pm-suspend"
 
 bindsym $mod+1 exec $nsi i3action runapp
 bindsym $mod+2 exec $nsi i3action search
-bindsym $mod+semicolon exec $nsi i3action search
 bindsym $mod+3 exec $nsi i3action youdao
 bindsym $mod+4 exec $nsi i3action mpc
 bindsym $mod+5 exec $nsi i3action locate
@@ -117,7 +119,7 @@ bindsym $mod+s mode "resize"
 # bindsym $mod+d exec $nsi dolphin
 bindsym $mod+d exec $nsi urxvtc -e ranger
 bindsym $mod+f fullscreen
-bindsym $mod+g exec $nsi google-chrome
+bindsym $mod+g exec $nsi google-chrome-stable
 
 bindsym $mod+space       focus mode_toggle
 bindsym $mod+Shift+space floating toggle

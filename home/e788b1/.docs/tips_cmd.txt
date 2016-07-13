@@ -1,3 +1,5 @@
+ffmpeg -i "$(you-get -u http://www.iqiyi.com/v_19rrne7134.html | grep http://)" -c copy -f mp4 -bsf:a aac_adtstoasc output.mp4
+
 find . -print0 | while read -d $'\0' file; do cp -v "$file" /tmp; done
 # disable ipv6
 /etc/sysctl.d/disable-ipv6.conf

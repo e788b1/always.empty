@@ -1,6 +1,6 @@
 ! Xresources
 Xcursor.size: 16
-URxvt*font:   xft:Terminus-10, xft:WenQuanYi Bitmap Song-10
+URxvt*font:   xft:Terminus-10, xft:WenQuanYi Bitmap Song-9
 Rxvt.preeditType:Root
 URxvt.termName    : rxvt-256color
 URxvt.iso14755    : false

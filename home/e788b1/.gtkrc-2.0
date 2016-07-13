@@ -3,7 +3,7 @@
 
 gtk-theme-name="Human"
 gtk-icon-theme-name="Vertex-Icons"
-gtk-font-name="Sans 10"
+gtk-font-name="Sans 12"
 gtk-cursor-theme-name="Numix-Cursor"
 gtk-cursor-theme-size=0
 gtk-toolbar-style=GTK_TOOLBAR_BOTH

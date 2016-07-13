@@ -34,7 +34,7 @@ endif
 set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
 "set cursorcolumn " 突出显示当前行等
 "set cursorline          " 突出显示当前行
-set t_ti= t_te= "不清屏
+" set t_ti= t_te=             "no clear screen
 
 " if has('mouse')
     " set mouse=a

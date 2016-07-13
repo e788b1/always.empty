@@ -34,3 +34,10 @@ PATH="$HOME/node_modules/.bin:$PATH"
 # thanksgiving
 # echo -e "\e[0;3$(( RANDOM * 6 / 32767 + 1 ))m观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。\n\e[0m"
 echo -e "\e[0;3$(( RANDOM * 6 / 32767 + 1 ))mChop wood, carry water.\n\e[0m"
+
+# PS1
+source ~/.git-prompt.sh
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWUPSTREAM="auto"
+PS1='$(__git_ps1 "\[\e[38;5;70m\]%s ")\[\e[1;32m\]\u@\h\[\e[1;34m\] \w λ\[\e[0m\] '
+

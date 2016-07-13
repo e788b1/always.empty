@@ -98,3 +98,14 @@ x11-proto/xproto abi_x86_32
 # required by @selected
 # required by @world (argument)
 >=app-i18n/enca-1.14-r2 abi_x86_32
+# required by sys-apps/systemd-226-r2::gentoo[lz4]
+# required by net-fs/samba-4.2.11::gentoo[systemd]
+# required by gnome-base/gvfs-1.26.3::gentoo[samba]
+# required by @selected
+# required by @world (argument)
+>=app-arch/lz4-0_p120 abi_x86_32
+# required by media-sound/pulseaudio-8.0::gentoo[systemd]
+# required by app-emulation/wine-1.8.2::gentoo[pulseaudio]
+# required by @selected
+# required by @world (argument)
+>=sys-apps/systemd-226-r2 abi_x86_32

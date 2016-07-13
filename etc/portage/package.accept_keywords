@@ -47,6 +47,7 @@ media-video/avidemux
 media-libs/avidemux-core
 media-libs/avidemux-plugins
 app-emulation/winetricks
+app-emulation/wine
 # required by wineqq (argument)
 =net-im/wineqq-20140102 ~amd64
 x11-misc/pcmanfm-qt
@@ -126,3 +127,5 @@ kde-misc/yakuake
 =sys-kernel/gentoo-sources-4.6.2
 sys-kernel/gentoo-sources
 media-video/handbrake
+media-tv/kodi
+app-emulation/virtualbox-bin

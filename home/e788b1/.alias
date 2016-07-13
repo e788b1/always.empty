@@ -34,7 +34,7 @@ alias avmergelistvob='printf "file '%s'\n" `pwd`/*.VOB > /tmp/avlist.txt'
 alias avmerge2='ffmpeg -f concat -safe 0 -i /tmp/avlist.txt -c copy '
 alias 7zc='LANG=C 7z '
 alias convmv2="convmv -f GBK -t utf8 --notest "
-alias xxnet='export http_proxy=http://127.0.0.1:8087'
+alias xxnet='export http_proxy=http://127.0.0.1:8087 https_proxy=http://127.0.0.1:8087'
 alias xxyou-get='you-get -x 127.0.0.1:8087 '
 # alias avmerge='ffmpeg -f concat -i <(printf "file %s\n" *) -c copy '
 # alias renmp4='i=10000; for f in *.mp4; do mv "$f" ${i#1}.mp4; ((i++)); done'

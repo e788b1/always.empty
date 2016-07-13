@@ -7,7 +7,7 @@ value1=$3
 browser="google-chrome-stable"
 terminal="urxvtc_scratchpad"
 
-DMENURC="-fn "Sans:Bold:pixelsize=30" -nb #073642 -nf #ffffff -sb #cb4b16 -sf #ffffff "
+DMENURC="-fn "Sans:Bold:pixelsize=20" -nb #073642 -nf #ffffff -sb #cb4b16 -sf #ffffff "
 DMENU="dmenu $DMENURC"
 
 case "$action" in
@@ -35,11 +35,12 @@ case "$action" in
         # killall redshift
         # redshift -l 30:114 -t 5700:3600 -m randr -g 0.8 &
         fcitx-start &
-        xautolock -time 15 -locker 'i3action locki3' &
+        xautolock -time 72 -locker 'i3action locki3' &
         # i3action toggletouch
         # xinput float 14
-        # sleep 5
-        # xmodmap -e "keysym Menu = Super_R"
+        sleep 5
+        xmodmap -e "keysym Menu = Super_R"
+        exit 0
         ;;
     redshift)
         if [[ 0 == `pgrep -cx redshift` ]] ; then

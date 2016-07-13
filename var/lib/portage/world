@@ -18,6 +18,7 @@ app-editors/mousepad
 app-editors/sublime-text
 app-editors/vim
 app-emulation/qemu
+app-emulation/virtualbox-bin
 app-emulation/wine
 app-emulation/winetricks
 app-i18n/fbterm
@@ -44,8 +45,10 @@ app-text/catdoc
 app-text/convmv
 app-text/docx2txt
 app-text/dos2unix
+app-text/fbreader
 app-text/odt2txt
 app-text/sloccount
+app-text/xchm
 app-text/zathura-meta
 dev-java/oracle-jdk-bin
 dev-java/oracle-jdk-bin:1.7
@@ -69,9 +72,11 @@ dev-python/pysrt
 dev-python/python-mpd
 dev-python/requests
 dev-python/rsa
+dev-python/six
 dev-python/tagpy
 dev-python/ujson
 dev-python/watchdog
+dev-python/xmltodict
 dev-util/android-studio
 dev-util/android-tools
 dev-util/ccache
@@ -81,9 +86,9 @@ gnome-base/gvfs
 lxde-base/lxappearance
 lxde-base/lxmenu-data
 lxde-base/lxrandr
-media-fonts/arphicfonts
 media-fonts/corefonts
 media-fonts/dejavu
+media-fonts/droid
 media-fonts/efont-unicode
 media-fonts/monaco
 media-fonts/powerline-symbols
@@ -120,6 +125,7 @@ media-sound/split2flac
 media-sound/wildmidi
 media-video/aegisub
 media-video/baka-mplayer
+media-video/ffmpeg
 media-video/handbrake
 media-video/mediainfo
 media-video/mkvtoolnix
@@ -139,6 +145,7 @@ net-irc/hexchat
 net-libs/nodejs
 net-misc/aria2
 net-misc/bcloud
+net-misc/curl
 net-misc/dhcpcd
 net-misc/iperf
 net-misc/netifrc

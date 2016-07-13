@@ -31,6 +31,7 @@ GRUB_DISTRIBUTOR="Gentoo"
 
 # Append parameters to the linux kernel command line for non-recovery entries
 # GRUB_CMDLINE_LINUX_DEFAULT="ipv6.disable=1"
+GRUB_CMDLINE_LINUX="init=/usr/lib/systemd/systemd"
 GRUB_DEFAULT=saved
 GRUB_SAVEDEFAULT=true
 
