@@ -87,6 +87,7 @@
 !home/e788b1/.docs/*
 !home/e788b1/.docs/*/*
 !home/e788b1/.fbtermrc
+!home/e788b1/.git-prompt.sh
 !home/e788b1/.gitconfig
 !home/e788b1/.gtkrc-2.0
 !home/e788b1/.gtkrc-2.0.mine
