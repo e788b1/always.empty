@@ -21,7 +21,7 @@ alias egrep='egrep -i --color=auto'
 # mv() { command mv -i "$@"; }
 
 alias war3='cd "/home/e788b1/Videos/Warcraft III"; LANG=zh_CN.utf8 wine war3.exe -opengl'
-rsyncp() { command rsync -avh --progress "$@"; }
+rsyncp() { command rsync -rvh --progress "$@"; }
 rsyncp2() { command rsync -rvh --info=progress2 "$@"; }
 alias dan2ass='python3 $GIT_REPOS/BiliDan/danmaku2ass.py'
 alias vbox='VBoxManage startvm'
