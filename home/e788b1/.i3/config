@@ -1,5 +1,12 @@
 #=============================================================== Style
 #6c71c4 #d33682 #484e50 #586e75 #b492b6 #cb4b16
+##fa545e
+##fa6d76
+##fb858d
+##fc9ea4
+##fdb7bb
+##fecfd2
+##fee8ea
 font xft:Cronos Pro bold 14
 # class                 border  backgr. text    indicator
 client.focused          #cb4b16 #cb4b16 #ffffff #484e50
@@ -23,7 +30,8 @@ bar {
 
                 focused_workspace  #cb4b16 #cb4b16 #ffffff
                 active_workspace   #2aa198 #2aa198 #eeeeee
-                inactive_workspace #586e75 #484e50 #cccccc
+                inactive_workspace #586e75 #FC9EA4 #222222
+                # inactive_workspace #586e75 #484e50 #cccccc
                 urgent_workspace   #2f343a #900000 #ffffff
                 binding_mode       #2f343a #900000 #ffffff
         }
@@ -119,6 +127,7 @@ bindsym $mod+s mode "resize"
 # bindsym $mod+d exec $nsi dolphin
 bindsym $mod+d exec $nsi urxvtc -e ranger
 bindsym $mod+f fullscreen
+bindsym F11 fullscreen
 bindsym $mod+g exec $nsi google-chrome-stable
 
 bindsym $mod+space       focus mode_toggle
@@ -165,7 +174,7 @@ for_window [class="^Lxappearance$"] $flyme
 for_window [class="^Speedcrunch$"] $flyme
 for_window [class="^feh$"] $flyme
 for_window [class="exe$"] $flyme
-for_window [class="^mpv$"] $flyme
+# for_window [class="^mpv$"] $flyme
 for_window [class="^Zathura$"] $flyme
 for_window [class="^Image Lounge$"] $flyme
 for_window [class="^Pavucontrol$"] $flyme

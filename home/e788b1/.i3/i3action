@@ -134,7 +134,8 @@ case "$action" in
                 feh --bg-fill "$wall"
             fi
         else
-            feh --bg-center "$wall" ||
+            # feh --bg-center "$wall" ||
+            feh --bg-tile "$wall" ||
                 hsetroot -solid `printf '#%06X\n' $((($RANDOM + 1) * 512 -1))`
         fi
         # remove entry in list

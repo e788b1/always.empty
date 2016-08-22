@@ -20,6 +20,6 @@
 # //pandorabox/lost+found /mnt/pandorabox cifs  credentials=/home/e788b1/.smb/credentials,uid=1000,gid=100     0 0
 tmpfs             /tmp        tmpfs noatime,nodiratime,size=4G 0 0
 # tmpfs     /home/e788b1/.cache tmpfs noatime,nodev,nosuid,size=1G 0 0
-# /swapfile none                swap  sw                           0 0
+/home/swapfile none                swap  sw                           0 0
 #/dev/cdrom /mnt/cdrom   auto   noauto,ro                  0 0
 #/dev/fd0   /mnt/floppy  auto   noauto                     0 0

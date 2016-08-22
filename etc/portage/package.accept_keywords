@@ -5,7 +5,7 @@ media-libs/fontconfig
 
 media-libs/libaacplus
 media-video/mpv
-media-video/ffmpeg
+# media-video/ffmpeg
 media-libs/x264
 media-libs/x265
 
@@ -112,6 +112,7 @@ media-sound/split2flac
 media-sound/aacgain
 app-emulation/virtualbox
 app-emulation/virtualbox-modules
+app-emulation/virtualbox-additions
 dev-libs/crossguid
 media-sound/dcadec
 app-crypt/fcrackzip
@@ -128,4 +129,7 @@ kde-misc/yakuake
 sys-kernel/gentoo-sources
 media-video/handbrake
 media-tv/kodi
-app-emulation/virtualbox-bin
+# required by app-emulation/virtualbox-5.1.2::gentoo
+app-arch/rarcrack
+# required by virtualbox (argument)
+=dev-util/kbuild-0.1.9998_pre20131130-r1 ~amd64
