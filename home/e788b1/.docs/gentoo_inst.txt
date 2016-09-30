@@ -1,7 +1,7 @@
 http://mirrors.163.com/gentoo/releases/amd64/autobuilds/current-stage3-amd64/
 mount /dev/sdXn /mnt/gentoo
 cd /mnt/gentoo
-tar xpvf stage3-*.tar.bz2
+tar xjpvf stage3-*.tar.bz2
 
 # chroot
 cd /

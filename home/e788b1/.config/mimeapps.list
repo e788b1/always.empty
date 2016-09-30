@@ -1,20 +1,24 @@
 [Added Associations]
 inode/directory=qcomicbook.desktop;
-text/plain=mousepad.desktop;
+text/plain=mousepad.desktop;subl-sublime-text.desktop;
 application/x-rar=org.gnome.FileRoller.desktop;
 application/zip=org.gnome.FileRoller.desktop;zathura-cb.desktop;
 audio/x-vorbis+ogg=mpv.desktop;
 application/x-mobipocket-ebook=zathura.desktop;
-application/x-shellscript=mousepad.desktop;
+application/x-shellscript=mousepad.desktop;subl-sublime-text.desktop;
 application/vnd.ms-htmlhelp=userapp-kchmviewer-VTKVJY.desktop;
 application/x-7z-compressed=org.gnome.FileRoller.desktop;
 image/jpeg=feh_browser.desktop;
+application/json=subl-sublime-text.desktop;
+application/xml=subl-sublime-text.desktop;
 
 [Default Applications]
-text/plain=mousepad.desktop
+text/plain=subl-sublime-text.desktop
 application/x-rar=org.gnome.FileRoller.desktop
 application/zip=org.gnome.FileRoller.desktop
 audio/x-vorbis+ogg=mpv.desktop
-application/x-shellscript=mousepad.desktop
+application/x-shellscript=subl-sublime-text.desktop
 application/vnd.ms-htmlhelp=userapp-kchmviewer-VTKVJY.desktop
 application/x-7z-compressed=org.gnome.FileRoller.desktop
+application/json=subl-sublime-text.desktop
+application/xml=subl-sublime-text.desktop

@@ -153,7 +153,6 @@ net-p2p/deluge
 net-p2p/qbittorrent
 net-p2p/rtorrent
 net-proxy/tsocks
-net-wireless/hostapd
 net-wireless/iw
 net-wireless/rfkill
 net-wireless/wpa_supplicant

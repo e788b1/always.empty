@@ -7,7 +7,7 @@ value1=$3
 browser="google-chrome-stable"
 terminal="urxvtc_scratchpad"
 
-DMENURC="-fn "Sans:Bold:pixelsize=20" -nb #073642 -nf #ffffff -sb #cb4b16 -sf #ffffff "
+DMENURC="-fn "Sans:Bold:pixelsize=34" -nb #073642 -nf #ffffff -sb #cb4b16 -sf #ffffff "
 DMENU="dmenu $DMENURC"
 
 case "$action" in

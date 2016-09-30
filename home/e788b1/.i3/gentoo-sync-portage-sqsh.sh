@@ -3,9 +3,11 @@
 
 source /etc/portage/make.conf
 SQFS_DIRNAME=/home/overlay/squashfs
-SQFS_MIRRORS="http://mirrors.163.com/gentoo/snapshots/squashfs"
+# SQFS_MIRRORS="http://mirrors.163.com/gentoo/snapshots/squashfs"
+# SQFS_MIRRORS="http://mirrors.aliyun.com/gentoo/snapshots/squashfs"
+SQFS_MIRRORS="http://mirrors.ustc.edu.cn/gentoo/snapshots/squashfs"
 
-SQFS_YESTERD=gentoo-`expr $(date +'%G%m%d') - 1`.lzo.sqfs
+SQFS_YESTERD=gentoo-`expr $(date +'%G%m%d') - 2`.lzo.sqfs
 SQFS_CURRENT=${SQFS_DIRNAME}/gentoo-current.lzo.sqfs
 
 cd ${SQFS_DIRNAME}

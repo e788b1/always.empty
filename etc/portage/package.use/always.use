@@ -11,7 +11,7 @@ dev-qt/qtsql mysql
 kde-apps/dolphin thumbnail
 media-video/vlc -qt4
 app-arch/unzip natspec
-media-libs/mesa gles2 wayland
+media-libs/mesa gles2 opencl
 app-arch/zip natspec
 app-editors/vim cscope
 app-emulation/virtualbox extensions
@@ -36,7 +36,7 @@ kde-apps/kdebase-kioslaves samba
 kde-apps/okular chm djvu dpi ebook mobi -crypt
 media-fonts/source-han-sans linguas_zh_CN
 media-fonts/source-pro -cjk
-media-libs/freetype infinality
+# media-libs/freetype infinality
 media-libs/libpng apng
 media-libs/phonon designer
 media-sound/ncmpcpp clock outputs taglib visualizer

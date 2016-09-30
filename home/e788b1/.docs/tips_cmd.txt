@@ -86,3 +86,9 @@ xrandr --output VGA-0 --mode 1920x1080
 
 aria2c -c -s10 -k1M -x10 -o "name.ext" --header "User-Agent: netdisk;5.2.7;PC;PC-Windows;6.2.9200;WindowsBaiduYunGuanJia" --header "Cookie: BDUSS=204T1JOT2p0Ymo5anM5dnZFbld6YmNoeE5tbktUd1RJUVk5VkFRYzJSOU41OGhWQVFBQUFBJCQAAAAAAAAAAAEAAACT9HQrRTc4OEIxAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE1aoVVNWqFVR;pcsett=1437299851-96619538eef87eaf159b137445fdc813" --header "Referer: http://pan.baidu.com/disk/home" "http://d.pcs.baidu.com/file/2a13edab1d5364a7fb2a36fd1d23389d?fid=4096777643-250528-437920137243153&time=1437213474&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-z7KQoKGCbdABj6tK45wiC%2fFyY2k%3d&expires=8h&prisign=unknow&chkbd=0&chkv=0&r=987840554"
 ffmpeg -f concat -i mylist.txt -c copy output
+ffmpeg -f alsa -i default -f v4l2 -s 640x480 -i /dev/video0 -acodec flac -vcodec libx264 output.mkv
+
+ffmpeg -i input.avi -c:v libx264 -crf 19 -preset slow -c:a aac -strict experimental -b:a 192k -ac 2 out.mp4
+ffmpeg -i input.avi -c:v libx264 -crf 19 -preset slow -c:a libfaac -b:a 192k -ac 2 out.mp4
+ffmpeg -i video -c:v libx264 -crf 18 -preset slow -pix_fmt yuv420p -c:a copy output.mkv
+

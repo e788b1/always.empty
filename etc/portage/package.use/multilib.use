@@ -169,3 +169,4 @@
 # required by @world (argument)
 >=media-libs/libaacplus-2.0.2-r2 abi_x86_32
 >=media-libs/libtheora-1.1.1-r1 abi_x86_32
+>=sys-devel/clang-3.8.1-r100 abi_x86_32

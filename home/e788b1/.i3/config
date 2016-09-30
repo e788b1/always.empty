@@ -19,10 +19,10 @@ bar {
         position top
         # mode     hide
         # strip_workspace_numbers yes
-        # tray_output primary
+        tray_output primary
         # tray_output LVDS
-        status_command py3status -c ~/.i3/py3status.conf
-        # status_command    i3status -c ~/.i3/i3status.conf
+        # status_command py3status -c ~/.i3/py3status.conf
+        status_command    i3status -c ~/.i3/i3status.conf
         colors {
                 background #073642
                 statusline #cccccc
@@ -30,8 +30,8 @@ bar {
 
                 focused_workspace  #cb4b16 #cb4b16 #ffffff
                 active_workspace   #2aa198 #2aa198 #eeeeee
-                inactive_workspace #586e75 #FC9EA4 #222222
-                # inactive_workspace #586e75 #484e50 #cccccc
+                # inactive_workspace #586e75 #FC9EA4 #222222
+                inactive_workspace #586e75 #484e50 #cccccc
                 urgent_workspace   #2f343a #900000 #ffffff
                 binding_mode       #2f343a #900000 #ffffff
         }

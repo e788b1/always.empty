@@ -5,7 +5,9 @@ export XMODIFIERS="@im=fcitx"
 # export QT_QPA_PLATFORMTHEME="kde"
 
 xset -b
-# xrandr --dpi 144 --output LVDS --mode 1366x768 --output HDMI-0 --mode 1920x1080 --primary --above LVDS
+# xrandr --dpi 144 --output LVDS --mode 1366x768 --output HDMI-0 --mode 1920x1080 --primary --left-of LVDS
+# xrandr --dpi 108 --output LVDS --off --output HDMI-0 --mode 1920x1080 --primary --left-of LVDS
+xrandr --output LVDS --off --output HDMI-0 --mode 1920x1080 --primary --left-of LVDS
 
 
 # Clean up after GDM (GDM sets the number of desktops to one)
